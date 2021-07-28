@@ -1,4 +1,5 @@
 import {useState} from 'react';
+import { Link } from "react-router-dom"; 
 import { useDispatch } from "react-redux";
 import {Input} from '../../../../common/components/Input/Input';
 import { Button } from '../../../../common/components/Button';
@@ -25,7 +26,7 @@ export const Login = () => {
         <div className="bg-gray-100 h-screen flex flex-col items-center justify-center">
             <form className="bg-white rounded h-auto p-4" onSubmit={handleLogin}>
                 <h2 className="text-4xl font-bold tracking-wide subpixel-antialiased pb-4">Farmbook</h2>
-                <div className="pb-2 font-medium text-opacity-40 text-base text-gray-700">Login to see posts from your friends.</div>
+                <div className="pb-2 font-medium text-opacity-60 text-base text-gray-700">Login to see posts from your friends.</div>
                 <div className="my-3">
                     <Input
                         id="email"
@@ -40,6 +41,10 @@ export const Login = () => {
                 <div className="text-red-500 text-sm font-semibold">{error}</div>
                 <div className="pt-6">
                     <Button text="Login" type="submit"/>
+                </div>
+                <div className="pt-5">
+                    <span className="text-base text-gray-600">New user?</span>{" "}
+                    <Link to="/signup" className="text-blue-600">Signup</Link>
                 </div>
             </form>
         </div>
