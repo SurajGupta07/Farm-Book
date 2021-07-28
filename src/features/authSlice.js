@@ -26,6 +26,22 @@ async ({ name, username, email, password }) => {
   }
 )
 
+export const loginUser = createAsyncThunk("/login", 
+async ({ email, password }) => {
+    try {
+      const res = await axios.post(`${MAIN_URL}/login`, {
+        email, password
+      });
+      if (res.status === 201) {
+        localStorage.setItem("login", JSON.stringify({ token: res.data.token, isUserLoggedIn: true }));
+      }
+      return res.data;
+    } catch (error) {
+      console.log("ERROR MESSAGE: ", error.message);
+    }
+  }
+)
+
 export const authSlice = createSlice({
   name: 'user',
   initialState: {
@@ -66,7 +82,26 @@ export const authSlice = createSlice({
       state.isError = true;
       state.errorMessage = action.error.message;
     }
+  },
+
+  [loginUser.pending]: (state, action) => {
+    state.isUserLoading = true
+  },
+
+  [loginUser.fulfilled]: (state, action) => {
+    state.isUserLoading = false;
+    state.isUserLoggedIn = true;
+    state.token = action.payload.token;
+    state.isError = false;
+    state.errorMessage = '';
+  },
+
+  [loginUser.rejected]: (state, action) => {
+    state.isUserLoading = false;
+    state.isError = true;
+    state.errorMessage = action.error.message;
   }
+
 })
 
 export default authSlice.reducer;
