@@ -4,7 +4,7 @@ import './App.css';
 import SignupForm from "./features/user/pages/signup/SignupForm";
 import LoginForm from "./features/user/pages/Login/LoginForm";
 import { PrivateRoute } from './common/components/PrivateRoute';
-import { UserProfile } from './common/components/UserProfile';
+import { UserProfile } from './features/user/pages/profile/UserProfile';
 import { Feed } from './common/components/Feed';
 
 function App() {
@@ -12,7 +12,7 @@ function App() {
         <div>
             <Routes>
                 <PrivateRoute path="/" element={<Feed />} />
-                <PrivateRoute path="/profile" element={<UserProfile />} />
+                <PrivateRoute path="/profile/:userName" element={<UserProfile />} />
                 <Route path="/signup" element={<SignupForm />}/>
                 <Route path="/login" element={<LoginForm />}/>
             </Routes>
