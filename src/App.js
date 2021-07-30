@@ -16,7 +16,7 @@ function App() {
             <Routes>
                 <PrivateRoute path="/" element={<Feed />} />
                 <PrivateRoute path="/notifications" element={<Notification />} />
-                <PrivateRoute path="/profile/:userName" element={<UserProfile />} />
+                <PrivateRoute path="/profile" element={<UserProfile />} />
                 <Route path="/signup" element={<SignupForm />}/>
                 <Route path="/login" element={<LoginForm />}/>
             </Routes>

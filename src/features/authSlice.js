@@ -42,9 +42,9 @@ async ({ email, password }) => {
 )
 
 export const getCurrentUserData = createAsyncThunk("auth/username", 
-async ({userName}) => {
+async ({_id}) => {
   try {
-    const res = await axios.get(`${MAIN_URL}/${userName}`);
+    const res = await axios.get(`${MAIN_URL}/${_id}`);
     return res.data.user;
   } catch (error) {
     console.error(error);

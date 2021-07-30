@@ -1,4 +1,3 @@
-import {useParams} from "react-router-dom";
 import {useDispatch, useSelector} from "react-redux";
 import {useEffect} from "react";
 import {getCurrentUserData} from "../../../authSlice";
@@ -7,12 +6,12 @@ import { useNavigate } from "react-router";
 export const UserProfile = () => {
     const navigate = useNavigate();
     const profile = useSelector((state) => state.auth.data);
-    const {userName} = useParams();
+    const _id = useSelector((state) => state.auth._id);
     const dispatch = useDispatch(); 
 
     useEffect(() => { 
-        dispatch(getCurrentUserData({userName})) // eslint-disable-next-line
-    }, [userName])
+        dispatch(getCurrentUserData({_id})) // eslint-disable-next-line
+    }, [_id])
 
     return (
         <div>
