@@ -1,5 +1,7 @@
 export const Feed = () => {
     return(
-        <div>Feed page</div>
+        <div>
+            Feed page
+        </div>
     )
 }

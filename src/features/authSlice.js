@@ -1,8 +1,8 @@
 import axios from "axios";
 import { MAIN_URL } from "../common/dbConnect";
-import { createAsyncThunk, createSlice, createSelector } from "@reduxjs/toolkit";
+import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 
-export const signupUser = createAsyncThunk("/signup", 
+export const signupUser = createAsyncThunk("auth/signup", 
 async ({ name, username, email, password }) => {
     try {
       const res = await axios.post(`${MAIN_URL}/signup`, {
@@ -12,6 +12,7 @@ async ({ name, username, email, password }) => {
           email,
           password,
           bio: `Hi there! I'm ${name}`,
+          profileURL: 'https://res.cloudinary.com/farmbook07/image/upload/v1627628803/profile-user_zxntqf.png',
           followingList: [],
           followersList: [],
         },
@@ -44,7 +45,6 @@ export const getCurrentUserData = createAsyncThunk("auth/username",
 async ({userName}) => {
   try {
     const res = await axios.get(`${MAIN_URL}/${userName}`);
-    console.log(res.data.user, 'user data')
     return res.data.user;
   } catch (error) {
     console.error(error);
@@ -115,7 +115,6 @@ export const authSlice = createSlice({
     },
   
     [getCurrentUserData.fulfilled]: (state, action) => {
-      console.log('[authSlice]', action)
       state.isUserLoading = false;
       state.isUserLoggedIn = true;
       state.data = action.payload;
