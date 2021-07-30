@@ -8,6 +8,7 @@ import { UserProfile } from './features/user/pages/profile/UserProfile';
 import { Feed } from './common/components/Feed';
 import { Header } from './common/components/Header';
 import {Notification} from "./common/components/Notification";
+import { Network } from './common/components/Network';
 
 function App() {
     return (
@@ -19,6 +20,7 @@ function App() {
                 <PrivateRoute path="/profile" element={<UserProfile />} />
                 <Route path="/signup" element={<SignupForm />}/>
                 <Route path="/login" element={<LoginForm />}/>
+                <Route path="/network" element={<Network />} />
             </Routes>
         </div>
     );

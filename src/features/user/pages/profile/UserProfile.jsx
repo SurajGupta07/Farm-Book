@@ -14,18 +14,18 @@ export const UserProfile = () => {
     }, [_id])
 
     return (
-        <div>
-            <div className="flex items-center ml-8 mt-2">
+        <div className="items-center mt-6 justify-center flex flex-col">
+            <div className="flex items-center mt-2">
                 <div>
-                    <img src={profile.profileURL} alt="user profile" className="rounded-full w-14 h-14 overflow-hidden"/>
+                    <img src={profile?.profileURL} alt="user profile" className="rounded-full w-14 h-14 overflow-hidden"/>
                 </div>
-                <div className="ml-4 flex-col">
+                <div className="ml-8 flex-col">
                     <div className="font-semibold">{profile.name}</div>
                     <div className="text-gray-400 -mt-1">@{profile.username}</div>
                 </div>
             </div>
-            <div className="ml-2 mt-4 pt-4 rounded md:mx-16">{profile.bio}</div>
-            <div className="flex gap-12 ml-12 mt-4" onClick={() => navigate('/network')}>
+            <div className="mt-6 rounded md:mx-16">{profile.bio}</div>
+            <div className="flex gap-12 mt-6" onClick={() => navigate('/network')}>
                 <div className="flex flex-col cursor-pointer items-center justify-center">
                     <div className="font-semibold">{profile?.followersList?.length}</div>
                     <div className="text-gray-600 -mt-1">Followers</div>

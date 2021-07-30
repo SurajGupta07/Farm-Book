@@ -51,6 +51,31 @@ async ({_id}) => {
   }
 });
 
+export const getUserNetwork = createAsyncThunk("auth/network", 
+  async({username}) => {
+    try{
+      const res = await axios.get(`${MAIN_URL}/${username}`);
+      return res.data.user
+    }
+    catch(err) {
+      console.log(err)
+    }
+  }
+)
+
+export const getFollowSuggetions = createAsyncThunk("auth/follow", 
+  async() => {
+    try{
+      const res = await axios.get(`${MAIN_URL}/follow-users`)
+      return res.data.users;
+    } 
+    catch(err) {
+      console.log(err)
+    }
+  }
+)
+
+
 export const authSlice = createSlice({
   name: 'user',
   initialState: {
@@ -69,6 +94,8 @@ export const authSlice = createSlice({
     isUserLoading: false,
     isError: false,
     errorMessage: '',
+    userNetwork: '',
+    followUsers: []
   },
 
   reducers: {},
@@ -123,7 +150,31 @@ export const authSlice = createSlice({
     [getCurrentUserData.rejected]: (state, action) => {
       state.isError = true;
       state.errorMessage = action.error.message;
+    },
+
+    [getUserNetwork.fulfilled]: (state, action) => {
+      state.userNetwork = action.payload;
+    },
+
+    [getUserNetwork.rejected]: (state, action) => {
+      state.isError = true;
+      state.errorMessage = action.error.message;
+    },
+
+    [getFollowSuggetions.pending]: (state, action) => {
+      state.isUserLoading = true;
+    },
+
+    [getFollowSuggetions.fulfilled]: (state, action) => {
+      state.isError = false;
+      state.followUsers = action.payload;
+    },
+
+    [getFollowSuggetions.rejected]: (state, action) => {
+      state.isError = true;
+      state.errorMessage = action.error.message;
     }
+
   }
 
 })
