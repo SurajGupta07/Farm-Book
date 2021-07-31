@@ -43,7 +43,7 @@ export const postSlice = createSlice({
 
         [postTweet.fulfilled]: (state, action) => {
             state.postLoading = false;
-            state.postList = [action.payload.newPost, ...state.postList];
+            state.postList = action.payload?.newUserPost;
         }
     }
 })

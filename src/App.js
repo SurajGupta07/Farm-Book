@@ -5,7 +5,7 @@ import SignupForm from "./features/user/pages/signup/SignupForm";
 import LoginForm from "./features/user/pages/Login/LoginForm";
 import { PrivateRoute } from './common/components/PrivateRoute';
 import { UserProfile } from './features/user/pages/profile/UserProfile';
-import { Feed } from './features/post/Pages/Feed';
+import { Feed } from './features/post/Pages/Feed/Feed';
 import { Header } from './common/components/Header';
 import {Notification} from "./common/components/Notification";
 import { Network } from './common/components/Network';
