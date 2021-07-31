@@ -1,7 +1,7 @@
 import {useEffect} from "react";
 import {useParams} from "react-router";
 import {useDispatch, useSelector} from "react-redux";
-import {getUserNetwork} from "../../features/authSlice";
+import {getUserNetwork} from "../../features/user/authSlice";
 
 export const Network = () => {
     const network = useSelector((state) => state.auth.userNetwork)

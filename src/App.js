@@ -5,7 +5,7 @@ import SignupForm from "./features/user/pages/signup/SignupForm";
 import LoginForm from "./features/user/pages/Login/LoginForm";
 import { PrivateRoute } from './common/components/PrivateRoute';
 import { UserProfile } from './features/user/pages/profile/UserProfile';
-import { Feed } from './common/components/Feed';
+import { Feed } from './features/post/Pages/Feed';
 import { Header } from './common/components/Header';
 import {Notification} from "./common/components/Notification";
 import { Network } from './common/components/Network';
@@ -18,6 +18,7 @@ function App() {
                 <PrivateRoute path="/" element={<Feed />} />
                 <PrivateRoute path="/notifications" element={<Notification />} />
                 <PrivateRoute path="/profile" element={<UserProfile />} />
+                <PrivateRoute path="/profile/:userId" element={<UserProfile />} />
                 <Route path="/signup" element={<SignupForm />}/>
                 <Route path="/login" element={<LoginForm />}/>
                 <Route path="/network" element={<Network />} />

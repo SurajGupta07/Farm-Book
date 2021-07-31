@@ -1,5 +1,5 @@
 import axios from "axios";
-import { MAIN_URL } from "../common/dbConnect";
+import { MAIN_URL } from "../../common/dbConnect";
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 
 export const signupUser = createAsyncThunk("auth/signup", 

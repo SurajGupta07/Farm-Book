@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import {Input} from '../../../../common/components/Input';
 import { Button } from '../../../../common/components/Button';
-import { loginUser } from '../../../authSlice';
+import { loginUser } from '../../authSlice';
 import { useNavigate } from "react-router";
 
 export const Login = () => {

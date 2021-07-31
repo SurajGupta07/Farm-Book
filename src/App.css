@@ -1,3 +1,8 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+.follow__users--container{
+    display: flex;
+    justify-content: flex-end;
+}
