@@ -26,11 +26,11 @@ export const postTweet = createAsyncThunk("post/createPost",
 )
 
 export const getAllPosts = createAsyncThunk("post/feed", 
-    async () => {
+    async (userId) => {
         try{
             let res;
-            res = await axios.get(`${MAIN_URL}/feed`)
-            // console.log('data obj', res.data)
+            res = await axios.get(`${MAIN_URL}/feed`, {userId})
+            console.log('data obj', res.data)
             return res.data;
         }
         catch(err) {
@@ -42,6 +42,7 @@ export const getAllPosts = createAsyncThunk("post/feed",
 export const postSlice = createSlice({
     name: 'post',
     initialState: {
+        _id: '',
         postList: [],
         isError: false,
         postLoading: false,

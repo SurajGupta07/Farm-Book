@@ -12,7 +12,7 @@ export const UserProfile = () => {
     const dispatch = useDispatch(); 
 
     useEffect(() => { 
-        dispatch(getCurrentUserData({_id})) // eslint-disable-next-line
+        dispatch(getCurrentUserData(_id)) // eslint-disable-next-line
     }, [_id])
 
     useEffect(() => {

@@ -27,8 +27,8 @@ export const CreateNewPost = ({setCreatePost, setShowList}) => {
                     <textarea
                         onChange={(e) => setContent(e.target.value)}
                         className="p-3 w-full h-48 flex-1 appearance-none border border-transparent bg-white text-gray-700 placeholder-gray-400 shadow-md rounded focus:outline-none focus:ring-2 focus:ring-blue-400 focus:border-transparent text-lg"></textarea>
-                    <div className="absolute -bottom-6 bg-white shadow-xl px-2 rounded-md text-green-600 font-semibold">
-                        200
+                    <div className="absolute  bg-white shadow-xl px-2 rounded-md text-red-600 font-bold">
+                        {content.length}/200
                     </div>
                 </div>
                 <div className="flex justify-end pt-2 mt-3">

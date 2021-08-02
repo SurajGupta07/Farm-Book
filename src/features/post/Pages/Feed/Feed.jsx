@@ -2,7 +2,7 @@ import { useEffect } from "react";
 import {useState} from "react"
 import {FollowUsers} from "../../../../common/components/FollowUser"
 import { CreateNewPost } from "./CreateNewPost";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { getAllPosts } from "../../postSlice";
 
 export const Feed = () => {
@@ -10,9 +10,11 @@ export const Feed = () => {
     // const feedList = useSelector((state) => console.log(state.post.postList))
     const [createPost, setCreatePost] = useState(false);
     const [showList, setShowList] = useState(true);
+    let userId = useSelector((state) => state.post._id)
+    // let posts = useSelector((state) => state.post.initialState.postList)
 
     useEffect(() => {
-        dispatch(getAllPosts())
+        dispatch(getAllPosts(userId))
     })
 
     return (
@@ -34,6 +36,18 @@ export const Feed = () => {
                     </button>
                 </div>
             )}
+            <div>
+            {/* {posts.map((post) => {
+                return (
+                    <div className="card" key={post._id}>
+                        <div className="card_box"> </div>
+                        <div className="card_text title-black">
+                            <p>{post?.content}</p>
+                        </div>
+                    </div>
+                    );
+                })} */}
+            </div>
             {createPost && (
                 <CreateNewPost setCreatePost={setCreatePost} setShowList={setShowList} />
             )}
