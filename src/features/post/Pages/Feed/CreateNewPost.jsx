@@ -9,7 +9,6 @@ export const CreateNewPost = ({setCreatePost, setShowList}) => {
     const userId = useSelector((state) => state.auth.data._id);
     const postOnClick = () => {
         dispatch(postTweet({content, owner: userId}))
-        console.log('Content', content)
         setCreatePost(false)
         setShowList(true)
     }

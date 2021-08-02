@@ -2,7 +2,55 @@
 @tailwind components;
 @tailwind utilities;
 
-.follow__users--container{
+.follow__users--container {
     display: flex;
     justify-content: flex-end;
+}
+
+.cards-list {
+    z-index: 0;
+    width: 100%;
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+}
+
+.card {
+    width: 300px;
+    height: 300px;
+    border-radius: 30px;
+    box-shadow: 5px 5px 25px 7px rgba(0, 0, 0, 0.25), -5px -5px 30px 7px rgba(0, 0, 0, 0.22);
+    cursor: pointer;
+    transition: 0.4s;
+}
+
+.card .card_box {
+    width: inherit;
+    height: inherit;
+    border-radius: 30px;
+}
+
+.card .card_text {
+    border-radius: 0px 0px 30px 30px;
+    font-family: sans-serif;
+    font-weight: bold;
+    font-size: 30px;
+    margin-left: 30px;
+    margin-top: -280px;
+}
+
+.card:hover {
+    transform: scale(0.9, 0.9);
+    box-shadow: 5px 5px 30px 15px rgba(0, 0, 0, 0.25),
+        -5px -5px 30px 15px rgba(0, 0, 0, 0.22);
+}
+
+.title-black {
+    color: black;
+}
+
+@media all and (max-width: 500px) {
+    .card-list {
+        flex-direction: column;
+    }
 }

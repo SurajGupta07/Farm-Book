@@ -75,9 +75,22 @@ export const getFollowSuggetions = createAsyncThunk("auth/follow",
   }
 )
 
+export const getUserCreatedAllPosts = createAsyncThunk("post/getall", 
+    async ( userId ) => {
+        try{
+            let res;
+            res = await axios.get(`${MAIN_URL}/post/getall`, {userId})
+            // console.log(res.data.postList);
+            return res.data.postList;
+        }
+        catch(err) {
+            console.log(err)
+        }
+    }
+)
 
 export const authSlice = createSlice({
-  name: 'user',
+  name: 'auth',
   initialState: {
     data: {
       _id: '',
@@ -95,7 +108,8 @@ export const authSlice = createSlice({
     isError: false,
     errorMessage: '',
     userNetwork: '',
-    followUsers: []
+    followUsers: [],
+    userCreatedPosts: []
   },
 
   reducers: {},
@@ -173,6 +187,15 @@ export const authSlice = createSlice({
     [getFollowSuggetions.rejected]: (state, action) => {
       state.isError = true;
       state.errorMessage = action.error.message;
+    },
+    
+    [getUserCreatedAllPosts.pending]: (state, action) => {
+      state.postLoading = true;
+    },
+
+    [getUserCreatedAllPosts.fulfilled]: (state, action) => {
+      state.isError = false;
+      state.userCreatedPosts = action.payload;
     }
 
   }

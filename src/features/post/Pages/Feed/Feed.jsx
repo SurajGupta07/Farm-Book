@@ -1,10 +1,20 @@
+import { useEffect } from "react";
 import {useState} from "react"
 import {FollowUsers} from "../../../../common/components/FollowUser"
 import { CreateNewPost } from "./CreateNewPost";
+import { useDispatch } from "react-redux";
+import { getAllPosts } from "../../postSlice";
 
 export const Feed = () => {
+    const dispatch = useDispatch();
+    // const feedList = useSelector((state) => console.log(state.post.postList))
     const [createPost, setCreatePost] = useState(false);
     const [showList, setShowList] = useState(true);
+
+    useEffect(() => {
+        dispatch(getAllPosts())
+    })
+
     return (
         <div>
             <div className="follow__users--container mr-8">

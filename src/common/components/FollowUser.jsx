@@ -18,7 +18,7 @@ export const FollowUsers = () => {
             <ul>
                 {followProfiles.map((userProfile) => {
                 return (
-                    <div className="flex items-center cursor-pointer" 
+                    <div key={userProfile?._id} className="flex items-center cursor-pointer" 
                     onClick = {() => {
                         navigate(`/profile/${userId}`);
                     }}>

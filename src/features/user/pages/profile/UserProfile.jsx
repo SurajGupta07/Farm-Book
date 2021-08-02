@@ -2,6 +2,8 @@ import {useDispatch, useSelector} from "react-redux";
 import {useEffect} from "react";
 import {getCurrentUserData} from "../../authSlice";
 import { useNavigate } from "react-router";
+import { getUserCreatedAllPosts } from "../../authSlice";
+import { UserPosts } from "./UserPosts";
 
 export const UserProfile = () => {
     const navigate = useNavigate();
@@ -12,6 +14,10 @@ export const UserProfile = () => {
     useEffect(() => { 
         dispatch(getCurrentUserData({_id})) // eslint-disable-next-line
     }, [_id])
+
+    useEffect(() => {
+        dispatch(getUserCreatedAllPosts({userId: _id}))
+    })
 
     return (
         <div className="items-center mt-6 justify-center flex flex-col">
@@ -35,6 +41,7 @@ export const UserProfile = () => {
                     <div className="text-gray-600 -mt-1">Following</div>
                 </div>
             </div>
+            <UserPosts />
         </div>
     )
 }
