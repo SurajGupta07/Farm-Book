@@ -3,12 +3,16 @@ import axios from "axios";
 import { MAIN_URL } from "../../common/dbConnect";
 
 export const postTweet = createAsyncThunk("post/createPost",
-    async ({ content, owner }) => {
+    async ({ content, author, token }) => {
+        console.log(token, 'from post slice')
         try{
             const res = await axios.post(`${MAIN_URL}/post`, {
+                headers: {
+                    authorization: token
+                },
                 post: {
                     content,
-                    owner,
+                    author,
                     likedUsers: [],
                     reactions: {
                         happy: [],
@@ -17,19 +21,25 @@ export const postTweet = createAsyncThunk("post/createPost",
                     }
                 }
             })
+            console.log(res.data)
             return res.data;
         }
         catch(err) {
             console.error(err)
         }
+        console.log('yes')
     }
 )
 
 export const getAllPosts = createAsyncThunk("post/feed", 
-    async (userId) => {
+    async (token) => {
         try{
             let res;
-            res = await axios.get(`${MAIN_URL}/feed`, {userId})
+            res = await axios.get(`${MAIN_URL}/feed`, {
+                headers: {
+                    authorization: token,
+                  }
+            })
             console.log('data obj', res.data)
             return res.data;
         }

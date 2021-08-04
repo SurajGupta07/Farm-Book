@@ -4,7 +4,7 @@ import home from "../assets/home.png"
 import notifications from "../assets/notification.png"
 
 export const Header = () => {
-    const { profileURL } = useSelector((state) => state.auth.data);
+    const profileURL = useSelector((state) => state.auth.data.profileURL);
     return (
         <header>
             <div className="flex shadow-lg h-auto w-screen bg-gray-300 justify-center">

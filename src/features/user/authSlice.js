@@ -5,7 +5,7 @@ import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 export const signupUser = createAsyncThunk("auth/signup", 
 async ({ name, username, email, password }) => {
     try {
-      const res = await axios.post(`${MAIN_URL}/signup`, {
+      const res = await axios.post(`${MAIN_URL}/user/signup`, {
         user: {
           name,
           username,
@@ -30,7 +30,7 @@ async ({ name, username, email, password }) => {
 export const loginUser = createAsyncThunk("/login", 
 async ({ email, password }) => {
     try {
-      const res = await axios.post(`${MAIN_URL}/login`, { email, password });
+      const res = await axios.post(`${MAIN_URL}/user/login`, { email, password });
       if (res.status === 201) {
         localStorage.setItem("login", JSON.stringify({ token: res.data.token, isUserLoggedIn: true }));
       }
@@ -42,9 +42,14 @@ async ({ email, password }) => {
 )
 
 export const getCurrentUserData = createAsyncThunk("auth/username", 
-async (_id) => {
+async (token, _id) => {
   try {
-    const res = await axios.get(`${MAIN_URL}/${_id}`);
+    const res = await axios.get(`${MAIN_URL}/user`, {
+      _id,
+      headers: {
+        authorization: token
+      }
+    });
     return res.data.user;
   } catch (error) {
     console.error(error);
@@ -64,29 +69,19 @@ export const getUserNetwork = createAsyncThunk("auth/network",
 )
 
 export const getFollowSuggetions = createAsyncThunk("auth/follow", 
-  async() => {
+  async(token) => {
     try{
-      const res = await axios.get(`${MAIN_URL}/follow-users`)
+      const res = await axios.get(`${MAIN_URL}/user/getall`, {
+        headers: {
+          authorization: token,
+        }
+      })
       return res.data.users;
     } 
     catch(err) {
       console.log(err)
     }
   }
-)
-
-export const getUserCreatedAllPosts = createAsyncThunk("post/getall", 
-    async ( userId ) => {
-        try{
-            let res;
-            res = await axios.get(`${MAIN_URL}/post/getall`, {userId})
-            // console.log(res.data.postList);
-            return res.data.postList;
-        }
-        catch(err) {
-            console.log(err)
-        }
-    }
 )
 
 export const authSlice = createSlice({
@@ -101,8 +96,8 @@ export const authSlice = createSlice({
       profileURL: '',
       followingList: [],
       followersList: [],
-      token: '',
     },
+    token: '',
     isUserLoggedIn: false,
     isUserLoading: false,
     isError: false,
@@ -122,7 +117,8 @@ export const authSlice = createSlice({
     [signupUser.fulfilled]: (state, action) => {
       state.isUserLoading = false;
       state.isUserLoggedIn = true;
-      state.token = action.payload.token;
+      state.data = action.payload.user;
+      state.token = action.payload.token
       state.isError = false;
       state.errorMessage = "";
     },
@@ -140,6 +136,7 @@ export const authSlice = createSlice({
     [loginUser.fulfilled]: (state, action) => {
       state.isUserLoading = false;
       state.isUserLoggedIn = true;
+      state.data = action.payload.user;
       state.token = action.payload.token;
       state.isError = false;
       state.errorMessage = '';
@@ -187,17 +184,7 @@ export const authSlice = createSlice({
     [getFollowSuggetions.rejected]: (state, action) => {
       state.isError = true;
       state.errorMessage = action.error.message;
-    },
-    
-    [getUserCreatedAllPosts.pending]: (state, action) => {
-      state.postLoading = true;
-    },
-
-    [getUserCreatedAllPosts.fulfilled]: (state, action) => {
-      state.isError = false;
-      state.userCreatedPosts = action.payload;
     }
-
   }
 
 })

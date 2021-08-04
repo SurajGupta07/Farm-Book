@@ -7,8 +7,11 @@ export const CreateNewPost = ({setCreatePost, setShowList}) => {
     let [content, setContent] = useState('');
     const dispatch = useDispatch();
     const userId = useSelector((state) => state.auth.data._id);
+    let token = useSelector((state) => state.auth.token);    
+    
     const postOnClick = () => {
-        dispatch(postTweet({content, owner: userId}))
+        console.log(token, 'from create new post')
+        dispatch(postTweet({content, author: userId, token}))
         setCreatePost(false)
         setShowList(true)
     }

@@ -10,12 +10,12 @@ export const Feed = () => {
     // const feedList = useSelector((state) => console.log(state.post.postList))
     const [createPost, setCreatePost] = useState(false);
     const [showList, setShowList] = useState(true);
-    let userId = useSelector((state) => state.post._id)
+    let token = useSelector((state) => state.auth.data.token)
     // let posts = useSelector((state) => state.post.initialState.postList)
 
-    useEffect(() => {
-        dispatch(getAllPosts(userId))
-    })
+    // useEffect(() => {
+    //     dispatch(getAllPosts(token))
+    // })
 
     return (
         <div>

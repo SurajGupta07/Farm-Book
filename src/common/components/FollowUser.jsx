@@ -7,11 +7,13 @@ export const FollowUsers = () => {
     const dispatch = useDispatch(); 
     const navigate = useNavigate();
     const followProfiles = useSelector((state) => state.auth.followUsers);
-    const userId = useSelector((state) => state.auth.data._id)
+    const userId = useSelector((state) => state.auth.data._id);
+    const token = useSelector((state) => state.auth.token);
 
     useEffect(() => { 
-        dispatch(getFollowSuggetions()) // eslint-disable-next-line
+        dispatch(getFollowSuggetions(token)) // eslint-disable-next-line
     }, [])
+    
     return(
         <div className="flex px-4 border mt-4 border-gray-600 rounded-md p-2 w-1/4 flex-col h-auto">
             <div className="mt-2 mb-4 text-gray-600 uppercase tracking-wide font-semibold font-mono">Welcome new FarmBook users!</div>
