@@ -42,14 +42,14 @@ async ({ email, password }) => {
 )
 
 export const getCurrentUserData = createAsyncThunk("auth/username", 
-async (token, username) => {
+async (username, token) => {
   try {
     const res = await axios.get(`${MAIN_URL}/user/${username}`, {
       headers: {
         authorization: token
       } 
     });
-    return res.data.user;
+    return res.data.userDetails;
   } catch (error) {
     console.error(error);
   }
@@ -96,6 +96,7 @@ export const authSlice = createSlice({
       followingList: [],
       followersList: [],
     },
+    followUser: '',
     token: '',
     isUserLoggedIn: false,
     isUserLoading: false,
@@ -154,8 +155,7 @@ export const authSlice = createSlice({
     [getCurrentUserData.fulfilled]: (state, action) => {
       state.isUserLoading = false;
       state.isUserLoggedIn = true;
-      console.log(action.payload)
-      state.data = action.payload;
+      state.followUser = action.payload;
     },
   
     [getCurrentUserData.rejected]: (state, action) => {

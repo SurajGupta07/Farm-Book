@@ -11,11 +11,11 @@ import {Notification} from "./common/components/Notification";
 import {Network} from './common/components/Network';
 import { useSelector, useDispatch } from 'react-redux';
 import { getCurrentUserData } from './features/user/authSlice';
+import { FollowUserProfile } from './common/components/FollowUserProfile';
 
 function App() {
 
     let token = useSelector((state) => state.auth.token);
-    let _id = useSelector((state) => state.auth.data._id)
     const dispatch = useDispatch();
     // useEffect(() => {
     //     if (token && _id) {
@@ -30,6 +30,7 @@ function App() {
                 <PrivateRoute path="/" element={< Feed />}/> 
                 {/* <PrivateRoute path="/notifications" element={<Notification />} /> */}
                 <PrivateRoute path="/profile/:username" element={< UserProfile />}/>
+                <PrivateRoute path="/follow/:username" element={<FollowUserProfile />} />
                 <Route path="/signup" element={< SignupForm />}/>
                 <Route path="/login" element={< LoginForm />}/> 
                 {/* <Route path="/network" element={<Network />} /> */}

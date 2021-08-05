@@ -22,7 +22,7 @@ export const FollowUsers = () => {
                 return (
                     <div key={userProfile?._id} className="flex items-center cursor-pointer" 
                     onClick = {() => {
-                        navigate(`/profile/${userProfile.username}`);
+                        navigate(`/follow/${userProfile.username}`);
                     }}>
                         <ul className="mb-4 mr-8">
                             <div className="ml-4 flex-col pb-4">

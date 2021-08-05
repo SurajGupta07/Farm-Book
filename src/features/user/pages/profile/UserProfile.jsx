@@ -2,6 +2,7 @@ import { useEffect } from "react";
 import {useSelector, useDispatch} from "react-redux";
 import { useNavigate, useParams } from "react-router";
 import { getAllUserCreatedPosts } from "../../../post/postSlice";
+import { getCurrentUserData } from "../../authSlice";
 // import { UserPosts } from "./UserPosts";
 
 export const UserProfile = () => {
@@ -9,10 +10,15 @@ export const UserProfile = () => {
     const dispatch = useDispatch();
     const username = useParams();
     const profile = useSelector((state) => state.auth.data);
+    const token = useSelector((state) => state.auth.token);
 
-    useEffect(() => {
-        dispatch(getAllUserCreatedPosts(username))
-    })
+    // useEffect(() => {
+    //     dispatch(getAllUserCreatedPosts(username))
+    // })
+
+    // useEffect(() => {
+    //     dispatch(getCurrentUserData({username, token}))
+    // })
 
     return (
         <div className="items-center mt-6 justify-center flex flex-col">
