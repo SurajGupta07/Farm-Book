@@ -3,8 +3,7 @@ import axios from "axios";
 import { MAIN_URL } from "../../common/dbConnect";
 
 export const postTweet = createAsyncThunk("post/createPost",
-    async ({ content, author, token }) => {
-        console.log(token, 'from post slice')
+    async ({ content, userId, token }) => {
         try{
             const res = await axios.post(`${MAIN_URL}/post`, {
                 headers: {
@@ -12,38 +11,44 @@ export const postTweet = createAsyncThunk("post/createPost",
                 },
                 post: {
                     content,
-                    author,
-                    likedUsers: [],
-                    reactions: {
-                        happy: [],
-                        sad: [],
-                        angry: []
-                    }
-                }
+                    likedUsers: []
+                }, 
+                userId
             })
-            console.log(res.data)
-            return res.data;
+            return res.data.post;
         }
         catch(err) {
             console.error(err)
         }
-        console.log('yes')
     }
 )
 
-export const getAllPosts = createAsyncThunk("post/feed", 
-    async (token) => {
+export const getAllUserCreatedPosts = createAsyncThunk("post/userpost", 
+    async (token, username) => {
         try{
             let res;
-            res = await axios.get(`${MAIN_URL}/feed`, {
+            res = await axios.get(`${MAIN_URL}/post/user/${username}`, {
                 headers: {
                     authorization: token,
                   }
             })
-            console.log('data obj', res.data)
             return res.data;
         }
         catch(err) {
+            console.log(err)
+        }
+    }
+)
+
+export const getFeed = createAsyncThunk("post/feed", 
+    async (token) => {
+        try {
+            const res = await axios.get(`${MAIN_URL}/feed`, {
+                headers: {
+                    authorization: token,
+                }
+            })
+        } catch (err) {
             console.log(err)
         }
     }
@@ -53,10 +58,11 @@ export const postSlice = createSlice({
     name: 'post',
     initialState: {
         _id: '',
-        postList: [],
+        userPostList: [],
         isError: false,
         postLoading: false,
         errorMessage: '',
+        postList: []
     },
 
     reducers: {},
@@ -68,18 +74,15 @@ export const postSlice = createSlice({
 
         [postTweet.fulfilled]: (state, action) => {
             state.postLoading = false;
-            state.postList = action.payload?.newPost;
+            state.postList = action.payload;
         },
 
-        [getAllPosts.pending]: (state, action) => {
+        [getAllUserCreatedPosts.pending]: (state, action) => {
             state.postLoading = true;
         },
 
-        [getAllPosts.fulfilled]: (state, action) => {
-            // console.log(action.payload)
-            // const uniquePostList = action.payload.postList.filter((post) =>state.postList.filter((obj) => obj._id !== post._id));
-            // console.log(uniquePostList, 'uniquePostList')
-            // state.postList = state.postList.concat(uniquePostList);
+        [getAllUserCreatedPosts.fulfilled]: (state, action) => {
+            state.userPostList = action.apylaod;
         }
     }
 })

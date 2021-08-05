@@ -3,7 +3,7 @@ import {useState} from "react"
 import {FollowUsers} from "../../../../common/components/FollowUser"
 import { CreateNewPost } from "./CreateNewPost";
 import { useDispatch, useSelector } from "react-redux";
-import { getAllPosts } from "../../postSlice";
+import { getFeed } from "../../postSlice";
 
 export const Feed = () => {
     const dispatch = useDispatch();
@@ -13,9 +13,9 @@ export const Feed = () => {
     let token = useSelector((state) => state.auth.data.token)
     // let posts = useSelector((state) => state.post.initialState.postList)
 
-    // useEffect(() => {
-    //     dispatch(getAllPosts(token))
-    // })
+    useEffect(() => {
+        dispatch(getFeed(token))
+    })
 
     return (
         <div>

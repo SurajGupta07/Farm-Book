@@ -1,10 +1,18 @@
-import {useSelector} from "react-redux";
-import { useNavigate } from "react-router";
+import { useEffect } from "react";
+import {useSelector, useDispatch} from "react-redux";
+import { useNavigate, useParams } from "react-router";
+import { getAllUserCreatedPosts } from "../../../post/postSlice";
 // import { UserPosts } from "./UserPosts";
 
 export const UserProfile = () => {
     const navigate = useNavigate();
+    const dispatch = useDispatch();
+    const username = useParams();
     const profile = useSelector((state) => state.auth.data);
+
+    useEffect(() => {
+        dispatch(getAllUserCreatedPosts(username))
+    })
 
     return (
         <div className="items-center mt-6 justify-center flex flex-col">

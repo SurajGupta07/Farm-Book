@@ -42,13 +42,12 @@ async ({ email, password }) => {
 )
 
 export const getCurrentUserData = createAsyncThunk("auth/username", 
-async (token, _id) => {
+async (token, username) => {
   try {
-    const res = await axios.get(`${MAIN_URL}/user`, {
-      _id,
+    const res = await axios.get(`${MAIN_URL}/user/${username}`, {
       headers: {
         authorization: token
-      }
+      } 
     });
     return res.data.user;
   } catch (error) {
@@ -155,6 +154,7 @@ export const authSlice = createSlice({
     [getCurrentUserData.fulfilled]: (state, action) => {
       state.isUserLoading = false;
       state.isUserLoggedIn = true;
+      console.log(action.payload)
       state.data = action.payload;
     },
   

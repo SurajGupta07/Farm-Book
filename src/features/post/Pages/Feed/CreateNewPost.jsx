@@ -10,8 +10,7 @@ export const CreateNewPost = ({setCreatePost, setShowList}) => {
     let token = useSelector((state) => state.auth.token);    
     
     const postOnClick = () => {
-        console.log(token, 'from create new post')
-        dispatch(postTweet({content, author: userId, token}))
+        dispatch(postTweet({content, userId, token}))
         setCreatePost(false)
         setShowList(true)
     }

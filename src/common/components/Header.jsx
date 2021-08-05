@@ -1,10 +1,12 @@
 import { useSelector } from "react-redux"
-import { Link } from "react-router-dom"; 
+import { Link, useNavigate } from "react-router-dom"; 
 import home from "../assets/home.png"
 import notifications from "../assets/notification.png"
 
 export const Header = () => {
     const profileURL = useSelector((state) => state.auth.data.profileURL);
+    const username = useSelector((state) => state.auth.data.username);
+    const navigate = useNavigate();
     return (
         <header>
             <div className="flex shadow-lg h-auto w-screen bg-gray-300 justify-center">
@@ -12,7 +14,7 @@ export const Header = () => {
                 <div className="flex gap-8 mr-8 items-center cursor-pointer">
                     <Link to='/'><img className="h-7" alt="home" src={home} /></Link>
                     <Link to='/notifications'><img className="h-7" alt="notifiactions" src={notifications} /></Link>
-                    <Link to='/profile'><img className="h-7" alt="profile" src={profileURL} /></Link>
+                    <div onClick={() => navigate(`/profile/${username}`)}><img className="h-7" alt="profile" src={profileURL} /></div>
                 </div> 
             </div>
         </header>
