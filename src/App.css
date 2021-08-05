@@ -49,6 +49,10 @@
     color: black;
 }
 
+.links_container{
+    margin-left: 90rem;
+}
+
 @media all and (max-width: 500px) {
     .card-list {
         flex-direction: column;
