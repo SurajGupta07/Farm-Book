@@ -30,13 +30,11 @@ export const Login = () => {
                 <div className="my-3">
                     <Input
                         id="email"
-                        value="suraj@gmail.com"
                         placeholder="Enter your Email"/>
                 </div>
                 <div className="my-3">
                     <Input
                         id="password"
-                        value="123456"
                         placeholder="Enter your password" 
                         autocomplete="off"/>
                 </div>
