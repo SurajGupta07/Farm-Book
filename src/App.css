@@ -33,9 +33,9 @@
 
 .card .card_text {
     border-radius: 0px 0px 30px 30px;
-    font-family: sans-serif;
+    /* font-family: sans-serif;
     font-weight: bold;
-    font-size: 30px;
+    font-size: 20px; */
     margin-left: 30px;
     margin-top: -280px;
 }

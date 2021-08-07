@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { Button } from "../../../../common/components/Button"
 import { postTweet } from "../../postSlice"
 
-export const CreateNewPost = ({setCreatePost, setShowList}) => {
+export const CreateNewPost = ({setCreatePost, setShowList, setShowPosts}) => {
     let [content, setContent] = useState('');
     const dispatch = useDispatch();
     const userId = useSelector((state) => state.auth.data._id);
@@ -24,6 +24,7 @@ export const CreateNewPost = ({setCreatePost, setShowList}) => {
                     onClick={() => {
                         setCreatePost(false)
                         setShowList(true)
+                        setShowPosts(true)
                     }}
                 >Close</button>
                 <div className="relative">
