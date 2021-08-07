@@ -10,12 +10,12 @@ export const Feed = () => {
     // const feedList = useSelector((state) => console.log(state.post.postList))
     const [createPost, setCreatePost] = useState(false);
     const [showList, setShowList] = useState(true);
-    let token = useSelector((state) => state.auth.data.token)
+    let token = useSelector((state) => state.auth.token)
     // let posts = useSelector((state) => state.post.initialState.postList)
 
     useEffect(() => {
-        dispatch(getFeed(token))
-    })
+        dispatch(getFeed(token)) // eslint-disable-next-line
+    }, [dispatch])
 
     return (
         <div>

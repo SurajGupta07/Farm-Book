@@ -1,7 +1,7 @@
 import { useEffect } from "react";
 import {useSelector, useDispatch} from "react-redux";
 import { useNavigate, useParams } from "react-router";
-import { getCurrentUserData } from "../../features/user/authSlice";
+import { getCurrentUserData, followUser } from "../../features/user/authSlice";
 import { Button } from "./Button";
 
 export const FollowUserProfile = () => {
@@ -10,13 +10,14 @@ export const FollowUserProfile = () => {
     const {username} = useParams();
     const followProfile = useSelector((state) => state.auth.followUser);
     const token = useSelector((state) => state.auth.token);
+    const _id = useSelector((state) => state.auth.data._id)
 
     useEffect(() => {
-        dispatch(getCurrentUserData(username, token))
+        dispatch(getCurrentUserData(username, token)) // eslint-disable-next-line
     }, [username])
 
     const handleFollow = () => {
-        console.log('following')
+        dispatch(followUser(_id, token))
     }
 
     return(
@@ -30,7 +31,7 @@ export const FollowUserProfile = () => {
                     <div className="text-gray-400 -mt-1">@{followProfile?.username}</div>
                 </div>
                 <div className="ml-8">
-                   <Button text='Follow' onClick={handleFollow} />
+                   <Button text='Follow' callback={handleFollow} />
                 </div>
             </div>
             <div className="mt-6 rounded md:mx-16">{followProfile?.bio}</div>

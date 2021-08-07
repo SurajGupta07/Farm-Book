@@ -9,7 +9,8 @@ export const CreateNewPost = ({setCreatePost, setShowList}) => {
     const userId = useSelector((state) => state.auth.data._id);
     let token = useSelector((state) => state.auth.token);    
     
-    const postOnClick = () => {
+    const postOnClick = (e) => {
+        e.preventDefault()
         dispatch(postTweet({content, userId, token}))
         setCreatePost(false)
         setShowList(true)
@@ -34,7 +35,7 @@ export const CreateNewPost = ({setCreatePost, setShowList}) => {
                     </div>
                 </div>
                 <div className="flex justify-end pt-2 mt-3">
-                    <Button text="Shoot" callback={postOnClick} />
+                    <Button text="Shoot" callback={(e) => postOnClick(e)} />
                 </div>
             </div>
         </div>

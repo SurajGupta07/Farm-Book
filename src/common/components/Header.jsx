@@ -1,7 +1,6 @@
 import { useSelector } from "react-redux"
 import { Link, useNavigate } from "react-router-dom"; 
 import home from "../assets/home.png"
-import notifications from "../assets/notification.png"
 
 export const Header = () => {
     const profileURL = useSelector((state) => state.auth.data.profileURL);
@@ -13,8 +12,7 @@ export const Header = () => {
                 <h1 className="flex py-4 pl-4 text-4xl font-bold tracking-wide leading-snug text-gray-700">FARMBOOK</h1>
                 <div className="flex gap-8 items-center links_container">
                     <Link to='/'><img className="h-7" alt="home" src={home} /></Link>
-                    <Link to='/notifications'><img className="h-7" alt="notifiactions" src={notifications} /></Link>
-                    <div onClick={() => navigate(`/profile/${username}`)}><img className="h-7" alt="profile" src={profileURL} /></div>
+                    <div onClick={() => navigate(`/profile/${username}`)} className="cursor-pointer"><img className="h-7" alt="profile" src={profileURL} /></div>
                 </div> 
             </div>
         </header>

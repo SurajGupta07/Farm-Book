@@ -83,6 +83,22 @@ export const getFollowSuggetions = createAsyncThunk("auth/follow",
   }
 )
 
+export const followUser = createAsyncThunk("auth/follow", 
+  async(_id, token) => {
+    try{  
+      const res = await axios.post(`${MAIN_URL}/user/follow/new`, {
+        headers: {
+          authorization: token
+        },
+        _id
+      })
+      return res.data
+    } catch(err) {
+      console.log(err)
+    }
+  }
+) 
+
 export const authSlice = createSlice({
   name: 'auth',
   initialState: {
@@ -178,6 +194,7 @@ export const authSlice = createSlice({
 
     [getFollowSuggetions.fulfilled]: (state, action) => {
       state.isError = false;
+      state.isUserLoading = false;
       state.followUsers = action.payload;
     },
 

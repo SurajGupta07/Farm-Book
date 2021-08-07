@@ -1,11 +1,11 @@
 import {useSelector} from "react-redux";
 
 export const UserPosts = () => {
-    const userPost = useSelector((state) => state.auth.userCreatedPosts)
+    const userPost = useSelector((state) => state.post.userPostList)
 
     return(
         <div className="cards-list mt-8">
-            {userPost.map((post) => {
+            {userPost?.map((post) => {
                 return (
                     <div className="card" key={post._id}>
                         <div className="card_box"> </div>

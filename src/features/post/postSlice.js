@@ -24,10 +24,9 @@ export const postTweet = createAsyncThunk("post/createPost",
 )
 
 export const getAllUserCreatedPosts = createAsyncThunk("post/userpost", 
-    async (token, username) => {
+    async ({token, username}) => {
         try{
-            let res;
-            res = await axios.get(`${MAIN_URL}/post/user/${username}`, {
+            const res = await axios.get(`${MAIN_URL}/post/userpost/${username}`, {
                 headers: {
                     authorization: token,
                   }
@@ -43,11 +42,12 @@ export const getAllUserCreatedPosts = createAsyncThunk("post/userpost",
 export const getFeed = createAsyncThunk("post/feed", 
     async (token) => {
         try {
-            const res = await axios.get(`${MAIN_URL}/feed`, {
+            let res = await axios.get(`${MAIN_URL}/feed`, {
                 headers: {
                     authorization: token,
                 }
             })
+            return res.data.postList
         } catch (err) {
             console.log(err)
         }

@@ -2,23 +2,18 @@ import { useEffect } from "react";
 import {useSelector, useDispatch} from "react-redux";
 import { useNavigate, useParams } from "react-router";
 import { getAllUserCreatedPosts } from "../../../post/postSlice";
-import { getCurrentUserData } from "../../authSlice";
-// import { UserPosts } from "./UserPosts";
+import { UserPosts } from "./UserPosts";
 
 export const UserProfile = () => {
     const navigate = useNavigate();
     const dispatch = useDispatch();
-    const username = useParams();
+    const {username} = useParams();
     const profile = useSelector((state) => state.auth.data);
     const token = useSelector((state) => state.auth.token);
 
-    // useEffect(() => {
-    //     dispatch(getAllUserCreatedPosts(username))
-    // })
-
-    // useEffect(() => {
-    //     dispatch(getCurrentUserData({username, token}))
-    // })
+    useEffect(() => {
+        dispatch(getAllUserCreatedPosts({username, token}))
+    }, [dispatch, username, token])
 
     return (
         <div className="items-center mt-6 justify-center flex flex-col">
@@ -42,7 +37,7 @@ export const UserProfile = () => {
                     <div className="text-gray-600 -mt-1">Following</div>
                 </div>
             </div>
-            {/* <UserPosts /> */}
+            <UserPosts />
         </div>
     )
 }
