@@ -36,7 +36,7 @@ async ({ email, password }) => {
       }
       return res.data;
     } catch (error) {
-      console.log("ERROR MESSAGE: ", error.message);
+      console.log("ERROR MESSAGE: ", error.response);
     }
   }
 )

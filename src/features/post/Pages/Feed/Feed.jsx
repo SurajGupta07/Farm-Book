@@ -4,14 +4,15 @@ import {FollowUsers} from "../../../../common/components/FollowUser"
 import { CreateNewPost } from "./CreateNewPost";
 import { useDispatch, useSelector } from "react-redux";
 import { getFeed } from "../../postSlice";
+import Loading from "../../../../common/assets/loading.gif"
 
 export const Feed = () => {
     const dispatch = useDispatch();
-    // const feedList = useSelector((state) => console.log(state.post.postList))
     const [createPost, setCreatePost] = useState(false);
     const [showList, setShowList] = useState(true);
-    let token = useSelector((state) => state.auth.token)
-    // let posts = useSelector((state) => state.post.initialState.postList)
+    let token = useSelector((state) => state.auth.token);
+    let posts = useSelector((state) => state.post.feedPost);
+    let loading = useSelector((state) => state.post.postLoading);
 
     useEffect(() => {
         dispatch(getFeed(token)) // eslint-disable-next-line
@@ -37,16 +38,31 @@ export const Feed = () => {
                 </div>
             )}
             <div>
-            {/* {posts.map((post) => {
+            {posts?.map((post) => {
                 return (
-                    <div className="card" key={post._id}>
-                        <div className="card_box"> </div>
-                        <div className="card_text title-black">
-                            <p>{post?.content}</p>
-                        </div>
+                    <div className="centeradiv" key={post._id}>
+                        {loading === true
+                        ? (
+                            <div className="ml-32"><img
+                                src={Loading}
+                                alt="loading"
+                                height='200px'
+                                width='200px'/>
+                            </div>
+                        ) : (
+                        <div className="card">
+                            <div className="card_box"> </div>
+                            <div className="card_text title-black">
+                                <p>@{post?.userId?.username}</p>
+                                <p>{post?.userId?.name}</p>
+                                <img src= {post?.userId?.profileURL} alt="post list" height="20px" width="20px" />
+                                <p>{post?.content}</p>
+                            </div>
+                        </div> 
+                        )}
                     </div>
                     );
-                })} */}
+                })}
             </div>
             {createPost && (
                 <CreateNewPost setCreatePost={setCreatePost} setShowList={setShowList} />

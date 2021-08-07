@@ -60,10 +60,11 @@ export const postSlice = createSlice({
         _id: '',
         userPostList: [],
         isError: false,
-        postLoading: false,
+        postLoading: true,
         errorMessage: '',
         postList: []
     },
+    feedPost: [],
 
     reducers: {},
 
@@ -83,6 +84,15 @@ export const postSlice = createSlice({
 
         [getAllUserCreatedPosts.fulfilled]: (state, action) => {
             state.userPostList = action.apylaod;
+        },
+        
+        [getFeed.pending]: (state, action) => {
+            state.postLoading = true;
+        },
+        
+        [getFeed.fulfilled]: (state, action) => {
+            state.postLoading = false;
+            state.feedPost = action.payload;
         }
     }
 })
