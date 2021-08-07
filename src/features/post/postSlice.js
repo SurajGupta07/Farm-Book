@@ -31,7 +31,7 @@ export const getAllUserCreatedPosts = createAsyncThunk("post/userpost",
                     authorization: token,
                   }
             })
-            return res.data;
+            return res.data.posts;
         }
         catch(err) {
             console.log(err)
@@ -58,12 +58,12 @@ export const postSlice = createSlice({
     name: 'post',
     initialState: {
         _id: '',
-        userPostList: [],
         isError: false,
-        postLoading: true,
         errorMessage: '',
         postList: []
     },
+    userPostList: [],
+    postLoading: true,
     feedPost: [],
 
     reducers: {},
@@ -83,7 +83,8 @@ export const postSlice = createSlice({
         },
 
         [getAllUserCreatedPosts.fulfilled]: (state, action) => {
-            state.userPostList = action.apylaod;
+            state.postLoading = false;
+            state.userPostList = action.payload;
         },
         
         [getFeed.pending]: (state, action) => {
