@@ -56,6 +56,14 @@
     padding-left: 100px;
 }
 
+.pointer-events {
+    /* pointer-events: none; */
+    /* z-index: 10000 !important; */
+    position: absolute;
+    right: 450px;
+    top: 110px;
+}
+
 @media all and (max-width: 500px) {
     .card-list {
         flex-direction: column;

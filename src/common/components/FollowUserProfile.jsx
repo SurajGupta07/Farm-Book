@@ -1,23 +1,25 @@
 import { useEffect } from "react";
 import {useSelector, useDispatch} from "react-redux";
 import { useNavigate, useParams } from "react-router";
-import { getCurrentUserData, followUser } from "../../features/user/authSlice";
+import { getCurrentUserData, addFollowUser } from "../../features/user/authSlice";
 import { Button } from "./Button";
 
 export const FollowUserProfile = () => {
     const dispatch = useDispatch();
     const navigate = useNavigate();
-    const {username} = useParams();
+    var {username} = useParams();
     const followProfile = useSelector((state) => state.auth.followUser);
-    const token = useSelector((state) => state.auth.token);
-    const _id = useSelector((state) => state.auth.data._id)
+    var token = useSelector((state) => state.auth.token);
+    // const _id = useSelector((state) => state.auth.data._id)
 
     useEffect(() => {
         dispatch(getCurrentUserData(username, token)) // eslint-disable-next-line
     }, [username])
 
-    const handleFollow = () => {
-        dispatch(followUser(_id, token))
+    const handleFollow = (e) => {
+        e.preventDefault();
+        console.log(token, 'token here')
+        dispatch(addFollowUser(token, username))
     }
 
     return(

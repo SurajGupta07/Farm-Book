@@ -15,6 +15,12 @@ export const UserProfile = () => {
         dispatch(getAllUserCreatedPosts({username, token}))
     }, [dispatch, username, token])
 
+    const logOutUser = (e) => {
+        e.preventDefault();
+        localStorage.removeItem('login')
+        navigate('/login')
+    }
+
     return (
         <div className="items-center mt-6 justify-center flex flex-col">
             <div className="flex items-center mt-2">
@@ -36,6 +42,11 @@ export const UserProfile = () => {
                     <div className="font-semibold">{profile?.followingList?.length}</div>
                     <div className="text-gray-600 -mt-1">Following</div>
                 </div>
+            </div>
+            <div className="pointer-events">
+                <button
+                    onClick={logOutUser}
+                    className="rounded h-10 md:h-12 w-20 md:w-28 md:text-xl flex justify-center items-center bg-blue-500 font-bold text-white shadow-lg">Logout</button>
             </div>
             <UserPosts />
         </div>

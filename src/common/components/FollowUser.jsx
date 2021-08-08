@@ -25,11 +25,7 @@ export const FollowUsers = () => {
                 className="mt-2 mb-4 text-gray-600 uppercase tracking-wide font-semibold font-mono">Welcome new FarmBook users!</div>
             {loading === true
                 ? (
-                    <div className="ml-32"><img
-                        src={Loading}
-                        alt="loading"
-                        height='30px'
-                        width='30px'/>
+                    <div className="ml-32"><img src={Loading} alt="loading" height='30px' width='30px'/>
                     </div>
                 )
                 : (
