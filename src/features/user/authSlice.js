@@ -56,9 +56,13 @@ async (username, token) => {
 });
 
 export const getUserNetwork = createAsyncThunk("auth/network", 
-  async({username}) => {
+  async({username, token}) => {
     try{
-      const res = await axios.get(`${MAIN_URL}/${username}`);
+      const res = await axios.get(`${MAIN_URL}/user/network/${username}`, {
+        headers: {
+          authorization: token
+        }
+      });
       return res.data.user
     }
     catch(err) {
@@ -181,6 +185,7 @@ export const authSlice = createSlice({
     },
 
     [getUserNetwork.fulfilled]: (state, action) => {
+      state.isUserLoading = false;
       state.userNetwork = action.payload;
     },
 

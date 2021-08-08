@@ -7,18 +7,19 @@ export const Network = () => {
     const network = useSelector((state) => state.auth.userNetwork)
     const {username} = useParams();
     const dispatch = useDispatch();
+    const token = useSelector((state) => state.auth.token)
 
     useEffect(() => {
-        dispatch(getUserNetwork({username})) // eslint-disable-next-line
+        dispatch(getUserNetwork({username, token})) // eslint-disable-next-line
     }, [username])
 
     return (
-        <div>
-            <div>
-                Following {network.followingList}
+        <div className="network__tab">
+            <div className="network_list">
+                Following {network?.followingList}
             </div>
-            <div>
-                Followers {network.followersList}
+            <div className="network_list">
+                Followers {network?.followersList}
             </div>
         </div>
     )

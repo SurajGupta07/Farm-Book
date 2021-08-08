@@ -33,9 +33,6 @@
 
 .card .card_text {
     border-radius: 0px 0px 30px 30px;
-    /* font-family: sans-serif;
-    font-weight: bold;
-    font-size: 20px; */
     margin-left: 30px;
     margin-top: -280px;
 }
@@ -45,7 +42,7 @@
 }
 
 .links_container{
-    margin-left: 50rem;
+    margin-left: 90rem;
 }
 
 .centeradiv{
@@ -57,8 +54,6 @@
 }
 
 .pointer-events {
-    /* pointer-events: none; */
-    /* z-index: 10000 !important; */
     position: absolute;
     right: 450px;
     top: 110px;
@@ -68,4 +63,17 @@
     .card-list {
         flex-direction: column;
     }
+}
+
+.network__tab{
+    margin: auto;
+    width: 50%;
+    padding: 10px;    
+}
+
+.network_list{
+    font-size: 20px;
+    font-weight: 400;
+    display: inline;
+    margin: 2rem;
 }

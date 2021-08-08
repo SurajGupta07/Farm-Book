@@ -33,7 +33,7 @@ export const UserProfile = () => {
                 </div>
             </div>
             <div className="mt-6 rounded md:mx-16">{profile?.bio}</div>
-            <div className="flex gap-12 mt-6" onClick={() => navigate('/network')}>
+            <div className="flex gap-12 mt-6" onClick={() => navigate(`/${username}/network`)}>
                 <div className="flex flex-col cursor-pointer items-center justify-center">
                     <div className="font-semibold">{profile?.followersList?.length}</div>
                     <div className="text-gray-600 -mt-1">Followers</div>

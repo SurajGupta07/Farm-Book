@@ -71,6 +71,8 @@ export const Feed = () => {
                                                         width="40px"/>
                                                     <p>{post
                                                             ?.content}</p>
+                                                    {/* <button
+                                                        className="rounded h-10 w-20 flex justify-center items-center bg-blue-500 text-white shadow-lg">Like</button> */}
                                                 </div>
                                             </div>
                                         )}
@@ -79,7 +81,10 @@ export const Feed = () => {
                         })}
                 </div>
             </div>}
-            {createPost && (<CreateNewPost setCreatePost={setCreatePost} setShowList={setShowList} setShowPosts={setShowPosts}/>)}
+            {createPost && (<CreateNewPost
+                setCreatePost={setCreatePost}
+                setShowList={setShowList}
+                setShowPosts={setShowPosts}/>)}
         </div>
     )
 }
