@@ -14,6 +14,7 @@ export const CreateNewPost = ({setCreatePost, setShowList, setShowPosts}) => {
         dispatch(postTweet({content, userId, token}))
         setCreatePost(false)
         setShowList(true)
+        setShowPosts(true)
     }
     return (
         <div
