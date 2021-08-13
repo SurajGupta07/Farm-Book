@@ -54,13 +54,29 @@ export const getFeed = createAsyncThunk("post/feed",
     }
 )
 
+//https://api.cloudinary.com/v1_1/farmbook07/image/upload
+
+export const likePost = createAsyncThunk("post/like", 
+    async ({postId, userId}) => {
+        try{
+            let res = await axios.put(`${MAIN_URL}/post/like/${postId}`, {
+                userId
+            })
+            return res.data.post;
+        } catch(err) {
+            console.log(err)
+        }
+    }
+)
+
 export const postSlice = createSlice({
     name: 'post',
     initialState: {
         _id: '',
         isError: false,
         errorMessage: '',
-        postList: []
+        postList: [],
+        likedBy: [],
     },
     userPostList: [],
     postLoading: true,
@@ -94,6 +110,15 @@ export const postSlice = createSlice({
         [getFeed.fulfilled]: (state, action) => {
             state.postLoading = false;
             state.feedPost = action.payload;
+        },
+
+        [likePost.pending]: (state, action) => {
+            state.postLoading = true;
+        },
+
+        [likePost.fulfilled]: (state, action) => {
+            state.postLoading = false;
+            state.likedBy = action.payload;
         }
     }
 })

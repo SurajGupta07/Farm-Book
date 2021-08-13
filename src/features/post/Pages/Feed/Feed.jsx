@@ -5,6 +5,7 @@ import {CreateNewPost} from "./CreateNewPost";
 import {useDispatch, useSelector} from "react-redux";
 import {getFeed} from "../../postSlice";
 import Loading from "../../../../common/assets/loading.gif"
+import {likePost} from "../../postSlice";
 
 export const Feed = () => {
     const dispatch = useDispatch();
@@ -17,7 +18,7 @@ export const Feed = () => {
     let token = useSelector((state) => state.auth.token);
     let posts = useSelector((state) => state.post.feedPost);
     let loading = useSelector((state) => state.post.postLoading);
-
+    let userId = useSelector((state) => state.auth.data._id);
     useEffect(() => {
         dispatch(getFeed(token)) // eslint-disable-next-line
     }, [dispatch, token])
@@ -71,8 +72,28 @@ export const Feed = () => {
                                                         width="40px"/>
                                                     <p>{post
                                                             ?.content}</p>
-                                                    {/* <button
-                                                        className="rounded h-10 w-20 flex justify-center items-center bg-blue-500 text-white shadow-lg">Like</button> */}
+                                                    <p>{post
+                                                            ?.likedBy
+                                                                ?.length}</p>
+                                                    {post
+                                                        ?.likedBy
+                                                            ?.includes(userId)
+                                                                ? <button
+                                                                        onClick={(e) => {
+                                                                        e.preventDefault();
+                                                                        let postId = post._id 
+                                                                        dispatch(likePost({postId, userId}))
+                                                                    }}
+                                                                        className="rounded h-10 w-20 flex justify-center items-center bg-blue-500 text-white shadow-lg">Unlike</button>
+
+                                                                : <button
+                                                                    onClick={(e) => {
+                                                                    e.preventDefault();
+                                                                    let postId = post._id 
+                                                                    dispatch(likePost({postId, userId}))
+                                                                }}
+                                                                    className="rounded h-10 w-20 flex justify-center items-center bg-blue-500 text-white shadow-lg">Like</button>
+                                                    }
                                                 </div>
                                             </div>
                                         )}

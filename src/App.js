@@ -8,16 +8,12 @@ import {UserProfile} from './features/user/pages/profile/UserProfile';
 import {Feed} from './features/post/Pages/Feed/Feed';
 import {Header} from './common/components/Header';
 import {Network} from './common/components/Network';
-import { useSelector } from 'react-redux';
 import { FollowUserProfile } from './common/components/FollowUserProfile';
 
 function App() {
-
-    let token = useSelector((state) => state.auth.token);
-
     return (
         <div>
-            {token && <Header/>}
+            <Header/>
             <Routes>
                 <PrivateRoute path="/" element={< Feed />}/> 
                 <PrivateRoute path="/profile/:username" element={< UserProfile />}/>
