@@ -71,7 +71,7 @@ export const Feed = () => {
                           width="40px"
                         />
                         <p>{post?.content}</p>
-                        <p>{post?.likedBy?.length}</p>
+                        <p className="pt-20">{post?.likedBy?.length}{" "}likes</p>
                         {post?.likedBy?.includes(userId) ? (
                           <button
                             onClick={(e) => {
@@ -79,9 +79,8 @@ export const Feed = () => {
                               let postId = post._id;
                               dispatch(unlikePost({ postId, userId }));
                             }}
-                            className="rounded h-10 w-20 flex justify-center items-center bg-blue-500 text-white shadow-lg"
+                            className="fa fa-thumbs-down text-4xl opacity-70 action--button outline-none"
                           >
-                            Unlike
                           </button>
                         ) : (
                           <button
@@ -90,9 +89,8 @@ export const Feed = () => {
                               let postId = post._id;
                               dispatch(likePost({ postId, userId }));
                             }}
-                            className="rounded h-10 w-20 flex justify-center items-center bg-blue-500 text-white shadow-lg"
+                            className="fa fa-thumbs-up text-4xl action--button outline-none"
                           >
-                            Like
                           </button>
                         )}
                       </div>

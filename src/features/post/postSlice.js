@@ -58,7 +58,6 @@ export const getFeed = createAsyncThunk("post/feed",
 
 export const likePost = createAsyncThunk("post/like", 
     async ({postId, userId}) => {
-        console.log(postId, userId)
         try{
             let res = await axios.put(`${MAIN_URL}/post/like/${postId}`, {
                 userId
@@ -133,7 +132,16 @@ export const postSlice = createSlice({
         [likePost.fulfilled]: (state, action) => {
             state.postLoading = false;
             state.likedBy = action.payload;
+        },
+
+        [unlikePost.pending]: (state, action) => {
+            state.postLoading = true;
+        },
+
+        [unlikePost.fulfilled]: (state, action) => {
+            state.postLoading = false;
         }
+
     }
 })
 
