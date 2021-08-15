@@ -6,6 +6,7 @@ import {useDispatch, useSelector} from "react-redux";
 import {getFeed} from "../../postSlice";
 import Loading from "../../../../common/assets/loading.gif"
 import {likePost} from "../../postSlice";
+import { unlikePost } from "../../postSlice";
 
 export const Feed = () => {
     const dispatch = useDispatch();
@@ -82,7 +83,7 @@ export const Feed = () => {
                                                                         onClick={(e) => {
                                                                         e.preventDefault();
                                                                         let postId = post._id 
-                                                                        dispatch(likePost({postId, userId}))
+                                                                        dispatch(unlikePost({postId, userId}))
                                                                     }}
                                                                         className="rounded h-10 w-20 flex justify-center items-center bg-blue-500 text-white shadow-lg">Unlike</button>
 

@@ -58,6 +58,7 @@ export const getFeed = createAsyncThunk("post/feed",
 
 export const likePost = createAsyncThunk("post/like", 
     async ({postId, userId}) => {
+        console.log(postId, userId)
         try{
             let res = await axios.put(`${MAIN_URL}/post/like/${postId}`, {
                 userId
@@ -65,6 +66,19 @@ export const likePost = createAsyncThunk("post/like",
             return res.data.post;
         } catch(err) {
             console.log(err)
+        }
+    }
+)
+
+export const unlikePost = createAsyncThunk("post/unlike", 
+    async ({postId, userId}) => {
+        try{
+            let res = await axios.post(`${MAIN_URL}/post/unlike/${postId}`, {
+                userId
+            })
+            return res.data;
+        } catch(err) {
+            console.log({err})
         }
     }
 )

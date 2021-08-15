@@ -1,6 +1,6 @@
-import {useState} from 'react';
+import {useState, useEffect} from 'react';
 import { Link } from "react-router-dom"; 
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import {Input} from '../../../../common/components/Input';
 import { Button } from '../../../../common/components/Button';
 import { signupUser } from '../../authSlice';
@@ -10,6 +10,13 @@ export const Signup = () => {
     let [error, setError] = useState('');
     const dispatch = useDispatch();
     const navigate = useNavigate();
+    const loggedIn = useSelector((state) => state.auth.isUserLoggedIn)
+
+    useEffect(() => {
+        if (loggedIn === true) {
+          navigate("/");
+        }
+    }, [navigate]);
 
     const handleSignUp = (e) => {
         e.preventDefault();
@@ -21,7 +28,6 @@ export const Signup = () => {
             setError('Please enter valid details')
         }
         dispatch(signupUser({ name, username, email, password }));
-        navigate('/')
     }
 
     return (

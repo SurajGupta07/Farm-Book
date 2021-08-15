@@ -1,6 +1,6 @@
-import {useState} from 'react';
+import {useState, useEffect} from 'react';
 import { Link } from "react-router-dom"; 
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import {Input} from '../../../../common/components/Input';
 import { Button } from '../../../../common/components/Button';
 import { loginUser } from '../../authSlice';
@@ -10,6 +10,13 @@ export const Login = () => {
     let [error, setError] = useState('');
     const dispatch = useDispatch();
     const navigate = useNavigate();
+    const loggedIn = useSelector((state) => state.auth.isUserLoggedIn)
+
+    useEffect(() => {
+        if (loggedIn === true) {
+          navigate("/");
+        }
+    });
 
     const handleLogin = (e) => {
         e.preventDefault();
@@ -19,7 +26,6 @@ export const Login = () => {
             setError('Please enter valid details')
         }
         dispatch(loginUser({ email, password }));
-        navigate('/profile/:userName')
     }
 
     return (
