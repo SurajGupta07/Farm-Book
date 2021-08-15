@@ -15,8 +15,8 @@ export const Signup = () => {
     useEffect(() => {
         if (loggedIn === true) {
           navigate("/");
-        }
-    }, [navigate]);
+        } // eslint-disable-next-line
+    }, [loggedIn]);
 
     const handleSignUp = (e) => {
         e.preventDefault();
