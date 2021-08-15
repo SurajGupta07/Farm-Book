@@ -3,7 +3,7 @@ import axios from "axios";
 import { MAIN_URL } from "../../common/dbConnect";
 
 export const postTweet = createAsyncThunk("post/createPost",
-    async ({ content, userId, token }) => {
+    async ({ content, userId, token, imageURL }) => {
         try{
             const res = await axios.post(`${MAIN_URL}/post`, {
                 headers: {
@@ -11,6 +11,7 @@ export const postTweet = createAsyncThunk("post/createPost",
                 },
                 post: {
                     content,
+                    imageURL,
                     likedUsers: []
                 }, 
                 userId
@@ -53,8 +54,6 @@ export const getFeed = createAsyncThunk("post/feed",
         }
     }
 )
-
-//https://api.cloudinary.com/v1_1/farmbook07/image/upload
 
 export const likePost = createAsyncThunk("post/like", 
     async ({postId, userId}) => {

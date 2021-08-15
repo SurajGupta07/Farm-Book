@@ -1,5 +1,4 @@
-import { useEffect } from "react";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { FollowUsers } from "../../../../common/components/FollowUser";
 import { CreateNewPost } from "./CreateNewPost";
 import { useDispatch, useSelector } from "react-redux";
@@ -17,10 +16,10 @@ export const Feed = () => {
   let posts = useSelector((state) => state.post.feedPost);
   let loading = useSelector((state) => state.post.postLoading);
   let userId = useSelector((state) => state.auth.data._id);
+
   useEffect(() => {
     dispatch(getFeed(token)); // eslint-disable-next-line
   }, [dispatch, token]);
-
   return (
     <div>
       <div className="follow__users--container mr-8">
@@ -70,8 +69,9 @@ export const Feed = () => {
                           height="40px"
                           width="40px"
                         />
+                        <img className="h-60 w-96" src={post?.postImage} alt="post-img"/>
                         <p>{post?.content}</p>
-                        <p className="pt-20">{post?.likedBy?.length}{" "}likes</p>
+                        <p className="pt-8">{post?.likedBy?.length} likes</p>
                         {post?.likedBy?.includes(userId) ? (
                           <button
                             onClick={(e) => {
@@ -80,8 +80,7 @@ export const Feed = () => {
                               dispatch(unlikePost({ postId, userId }));
                             }}
                             className="fa fa-thumbs-down text-4xl opacity-70 action--button outline-none"
-                          >
-                          </button>
+                          ></button>
                         ) : (
                           <button
                             onClick={(e) => {
@@ -90,8 +89,7 @@ export const Feed = () => {
                               dispatch(likePost({ postId, userId }));
                             }}
                             className="fa fa-thumbs-up text-4xl action--button outline-none"
-                          >
-                          </button>
+                          ></button>
                         )}
                       </div>
                     </div>
