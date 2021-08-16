@@ -77,3 +77,23 @@
     display: inline;
     margin: 2rem;
 }
+
+@media only screen and (max-width: 600px) {
+    .follow__users--container {
+        display: flex;
+        justify-content: flex-start;
+        margin-left: 1rem;
+    }
+    .follow_users{
+        width: 80% !important;
+    }
+    .centeradiv{
+        margin-top: 200px !important;
+        margin-left: -5rem !important;
+        width: 50%;
+    }
+    .card{
+        width: 350px !important;
+        height: 350px !important;
+    }  
+  }

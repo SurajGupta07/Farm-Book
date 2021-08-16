@@ -12,6 +12,7 @@ export const FollowUserProfile = () => {
   const navigate = useNavigate();
   var { username } = useParams();
   const followProfile = useSelector((state) => state.auth.followUser);
+  const followUserId = useSelector((state) => state.auth.followUser._id)
   var token = useSelector((state) => state.auth.token);
   const userId = useSelector((state) => state.auth.data._id);
 
@@ -21,7 +22,7 @@ export const FollowUserProfile = () => {
 
   const handleFollow = (e) => {
     e.preventDefault();
-    dispatch(addFollowUser({ username, userId }));
+    dispatch(addFollowUser({ followUserId, userId }));
   };
 
   return (

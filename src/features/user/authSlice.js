@@ -88,10 +88,10 @@ export const getFollowSuggetions = createAsyncThunk("auth/follow",
 )
 
 export const addFollowUser = createAsyncThunk("auth/follow", 
-  async({username, userId}) => {
+  async({followUserId, userId}) => {
     try{  
       const res = await axios.post(`${MAIN_URL}/user/follow/new`, {
-        username, userId
+        followUserId, userId
       })
       return res.data
     } catch(err) {
