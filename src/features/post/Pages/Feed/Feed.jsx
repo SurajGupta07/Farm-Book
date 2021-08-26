@@ -62,7 +62,7 @@ export const Feed = () => {
                       <div className="card_box"></div>
                       <div className="card_text title-black">
                         <p className="text-2xl pl-12 font-semibold">
-                          @{post?.userId?.username}
+                          @{" "}{post?.userId?.username}
                         </p>
                         <p className="text-xl pl-12">{post?.userId?.name}</p>
                         <img

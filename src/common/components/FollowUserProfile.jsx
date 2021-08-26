@@ -15,7 +15,6 @@ export const FollowUserProfile = () => {
   const followUserId = useSelector((state) => state.auth.followUser._id)
   var token = useSelector((state) => state.auth.token);
   const userId = useSelector((state) => state.auth.data._id);
-
   useEffect(() => {
     dispatch(getCurrentUserData(username, token)); // eslint-disable-next-line
   }, [username]);
@@ -40,7 +39,7 @@ export const FollowUserProfile = () => {
           <div className="text-gray-400 -mt-1">@{followProfile?.username}</div>
         </div>
         <div className="ml-8">
-          <Button text="Follow" callback={handleFollow} />
+          {followProfile?.followersList?.includes(userId) ? <Button text="Unfollow" /> : <Button text="Follow" callback={handleFollow} />}
         </div>
       </div>
       <div className="mt-6 rounded md:mx-16">{followProfile?.bio}</div>
