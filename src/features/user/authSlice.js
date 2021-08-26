@@ -100,6 +100,20 @@ export const addFollowUser = createAsyncThunk("auth/follow",
   }
 ) 
 
+export const removeFollowing = createAsyncThunk("auth/unfollow",
+  async({followUserId, userId}) => {
+    try{  
+      const res = await axios.post(`${MAIN_URL}/user/follow/remove`, {
+        followUserId, userId
+      })
+      console.log(res.data)
+      return res.data
+    } catch(err) {
+      console.log(err)
+    }
+  }
+)
+
 export const authSlice = createSlice({
   name: 'auth',
   initialState: {

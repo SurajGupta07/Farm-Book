@@ -23,6 +23,7 @@ export const CreateNewPost = ({ setCreatePost, setShowList, setShowPosts }) => {
   };
 
   const uploadHander = async (e) => {
+    e.target.innerHTML = 'Uploaded'
     e.preventDefault();
     if (!image) {
       console.log("Image is required");

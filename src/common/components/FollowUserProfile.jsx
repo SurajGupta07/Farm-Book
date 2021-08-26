@@ -4,6 +4,7 @@ import { useNavigate, useParams } from "react-router";
 import {
   getCurrentUserData,
   addFollowUser,
+  removeFollowing
 } from "../../features/user/authSlice";
 import { Button } from "./Button";
 
@@ -24,6 +25,11 @@ export const FollowUserProfile = () => {
     dispatch(addFollowUser({ followUserId, userId }));
   };
 
+  const handleUnFollow = (e) => {
+    e.preventDefault();
+    dispatch(removeFollowing({followUserId, userId}))
+  }
+
   return (
     <div className="items-center mt-6 justify-center flex flex-col">
       <div className="flex items-center mt-2">
@@ -39,7 +45,7 @@ export const FollowUserProfile = () => {
           <div className="text-gray-400 -mt-1">@{followProfile?.username}</div>
         </div>
         <div className="ml-8">
-          {followProfile?.followersList?.includes(userId) ? <Button text="Unfollow" /> : <Button text="Follow" callback={handleFollow} />}
+          {followProfile?.followersList?.includes(userId) ? <Button text="Unfollow" callback={handleUnFollow}/> : <Button text="Follow" callback={handleFollow} />}
         </div>
       </div>
       <div className="mt-6 rounded md:mx-16">{followProfile?.bio}</div>

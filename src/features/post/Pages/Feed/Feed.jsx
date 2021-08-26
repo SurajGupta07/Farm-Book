@@ -24,7 +24,7 @@ export const Feed = () => {
   return (
     <div>
     {loading === true ? (
-      <div className="ml-96 mt-40">
+      <div className="ml-96 mt-56">
         <img
           src={Loading}
           alt="loading"
