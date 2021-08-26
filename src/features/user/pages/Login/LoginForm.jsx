@@ -8,6 +8,7 @@ import { useNavigate } from "react-router";
 
 export const Login = () => {
   let [error, setError] = useState("");
+  const [userData, setUserData] = useState({email: "suraj@gmail.com", password: 123456})
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const loggedIn = useSelector((state) => state.auth.isUserLoggedIn);
@@ -17,6 +18,16 @@ export const Login = () => {
       navigate("/");
     }
   }, [navigate, loggedIn]);
+
+  const handleChange = (e) => {
+    const { value, name } = e.target;
+    setUserData((prevValue) => {
+      return {
+        ...prevValue,
+        [name]: value,
+      };
+    });
+  }
 
   const handleLogin = (e) => {
     e.preventDefault();
@@ -38,13 +49,17 @@ export const Login = () => {
           Login to see posts from your friends.
         </div>
         <div className="my-3">
-          <Input id="email" placeholder="Enter your Email" />
+          <Input id="email" placeholder="Enter your Email" name="email" value={userData.email} onChange={handleChange} />
         </div>
         <div className="my-3">
           <Input
             id="password"
+            name="password"
+            type="password"
             placeholder="Enter your password"
             autocomplete="off"
+            value = {userData.password}
+            onChange = {handleChange}
           />
         </div>
         <div className="text-red-500 text-sm font-semibold">{error}</div>
@@ -56,6 +71,10 @@ export const Login = () => {
           <Link to="/signup" className="text-blue-600">
             Signup
           </Link>
+        </div>
+        <div className="mt-4">
+          <p>Email - <strong>test@gmail.com</strong></p>{" "}
+          <p>Password - <strong>123456</strong></p>
         </div>
       </form>
     </div>
