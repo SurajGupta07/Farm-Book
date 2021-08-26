@@ -16,7 +16,7 @@ export const postTweet = createAsyncThunk("post/createPost",
                 }, 
                 userId
             })
-            return res.data.post;
+            return res.data;
         }
         catch(err) {
             console.error(err)
@@ -74,7 +74,7 @@ export const unlikePost = createAsyncThunk("post/unlike",
             let res = await axios.post(`${MAIN_URL}/post/unlike/${postId}`, {
                 userId
             })
-            return res.data;
+            return res.data.post;
         } catch(err) {
             console.log({err})
         }
@@ -103,7 +103,8 @@ export const postSlice = createSlice({
 
         [postTweet.fulfilled]: (state, action) => {
             state.postLoading = false;
-            state.postList = action.payload;
+            state.feedPost = [...state.feedPost, action.payload.post];
+            console.log(state.postList.length, 'list')
         },
 
         [getAllUserCreatedPosts.pending]: (state, action) => {
@@ -130,7 +131,8 @@ export const postSlice = createSlice({
 
         [likePost.fulfilled]: (state, action) => {
             state.postLoading = false;
-            state.likedBy = action.payload;
+            let post = state.feedPost.find((likedPost) => likedPost._id === action.payload._id )
+            post.likedBy = action.payload?.likedBy;
         },
 
         [unlikePost.pending]: (state, action) => {
@@ -139,6 +141,8 @@ export const postSlice = createSlice({
 
         [unlikePost.fulfilled]: (state, action) => {
             state.postLoading = false;
+            let post = state.feedPost.find((unlikedPost) => unlikedPost._id === action.payload._id )
+            post.likedBy = action.payload?.likedBy;
         }
 
     }

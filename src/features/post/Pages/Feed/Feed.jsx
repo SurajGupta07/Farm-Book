@@ -20,7 +20,19 @@ export const Feed = () => {
   useEffect(() => {
     dispatch(getFeed(token)); // eslint-disable-next-line
   }, [dispatch, token]);
+
   return (
+    <div>
+    {loading === true ? (
+      <div className="ml-96 mt-40">
+        <img
+          src={Loading}
+          alt="loading"
+          height="200px"
+          width="200px"
+        />
+      </div>
+    ) : (
     <div>
       <div className="follow__users--container mr-8">
         {showList && <FollowUsers />}
@@ -45,16 +57,7 @@ export const Feed = () => {
             {posts?.map((post) => {
               return (
                 <div className="centeradiv" key={post._id}>
-                  {loading === true ? (
-                    <div className="ml-32">
-                      <img
-                        src={Loading}
-                        alt="loading"
-                        height="200px"
-                        width="200px"
-                      />
-                    </div>
-                  ) : (
+                  
                     <div className="card">
                       <div className="card_box"></div>
                       <div className="card_text title-black">
@@ -93,7 +96,6 @@ export const Feed = () => {
                         )}
                       </div>
                     </div>
-                  )}
                 </div>
               );
             })}
@@ -107,6 +109,8 @@ export const Feed = () => {
           setShowPosts={setShowPosts}
         />
       )}
+    </div>
+    )}
     </div>
   );
 };
