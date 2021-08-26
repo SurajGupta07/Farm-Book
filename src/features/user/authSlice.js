@@ -106,7 +106,6 @@ export const removeFollowing = createAsyncThunk("auth/unfollow",
       const res = await axios.post(`${MAIN_URL}/user/follow/remove`, {
         followUserId, userId
       })
-      console.log(res.data)
       return res.data
     } catch(err) {
       console.log(err)

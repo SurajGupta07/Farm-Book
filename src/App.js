@@ -9,6 +9,7 @@ import { Feed } from "./features/post/Pages/Feed/Feed";
 import { Header } from "./common/components/Header";
 import { Network } from "./common/components/Network";
 import { FollowUserProfile } from "./common/components/FollowUserProfile";
+import Notfound from "./common/components/NotFound";
 
 function App() {
   return (
@@ -24,6 +25,7 @@ function App() {
         <Route path="/signup" element={<SignupForm />} />
         <Route path="/login" element={<LoginForm />} />
         <PrivateRoute path="/:username/network" element={<Network />} />
+        <Route path="*" element={<Notfound />} />
       </Routes>
     </div>
   );
