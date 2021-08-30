@@ -1,70 +1,61 @@
-# Getting Started with Create React App
+# Farm-Book
+A Social Media App built with React + Redux       
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+Live link: https://farmbook.netlify.app/      
 
-## Available Scripts
+Backend source code (Express & Mongoose):[https://github.com/SurajGupta07/FarmBook-Backend](https://github.com/SurajGupta07/FarmBook-Backend)
 
-In the project directory, you can run:
+---
+## Tech stack
+- Frontend
+  + React
+  + React Router
+  + Redux-toolkit
+  + Tailwind
+- Backend
+  + Express
+  + Mongoose
+  + MongoDB
+  + Cloudinary for storing pictures
 
-### `yarn start`
+---
+### Key features
+- JWT Authentication
+- Create Post
+- Follow/Unfollow other users
+- Image upload 
+- Like/Unlike Post
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+### Features in Progress
+ - Infinite Scroll for feed
+ - Update User profile
+ - User Notificaitons
+ - Search Users
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+---
+#### Get started
 
-### `yarn test`
+1. **Clone the repo:**
+```bash
+  $ git clone https://github.com/SurajGupta07/Farm-Book.git
+```
+2. **Switch to `development` branch:**
+```bash
+  $ cd Farm-Book
+  $ git checkout development
+```
+3. **Install required node modules:**
+```bash
+  $ npm install
+```
+4. **Start the dev server:**
+```bash
+  $ npm start
+```
+Open the `localhost` link in the browser.
+Happy hacking!       
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+---
+### App screenshot
 
-### `yarn build`
-
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `yarn eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
-
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `yarn build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+![Farm-Book](https://user-images.githubusercontent.com/48823022/130963838-9e229c81-4b31-4a7c-a105-556e7245afb8.png)
