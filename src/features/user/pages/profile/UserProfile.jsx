@@ -17,7 +17,7 @@ export const UserProfile = () => {
 
   const logOutUser = (e) => {
     e.preventDefault();
-    localStorage.removeItem("login");
+    localStorage?.removeItem("login");
     navigate("/login");
   };
 

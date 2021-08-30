@@ -50,6 +50,7 @@ export const Signup = () => {
         </div>
         <div className="my-3">
           <Input
+            type="password"
             id="password"
             placeholder="Enter your password"
             autocomplete="off"

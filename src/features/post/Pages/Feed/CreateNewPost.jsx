@@ -71,7 +71,7 @@ export const CreateNewPost = ({ setCreatePost, setShowList, setShowPosts }) => {
               onChange={(e) => {
                 setImage(e.target.files[0]);
               }}
-            />{imageURL ? <img className="mt-4 mb-4" src={imageURL} alt="img preview" height="300px" width="300px"/> : <p>Upload an Image</p>}
+            />{imageURL ? <img className="mt-4 mb-4" src={imageURL} alt="img preview" height="300px" width="300px"/> : <p><strong>Cannot shoot without an Image!</strong></p>}
             <button
               onClick={(e) => uploadHander(e)}
               className="rounded h-10 w-20 flex justify-center items-center bg-blue-500 font-bold text-white shadow-lg disabled:opacity-80 mt-2"
