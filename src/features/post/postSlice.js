@@ -125,22 +125,12 @@ export const postSlice = createSlice({
             state.feedPost = action.payload;
         },
 
-        [likePost.pending]: (state, action) => {
-            state.postLoading = true;
-        },
-
         [likePost.fulfilled]: (state, action) => {
-            state.postLoading = false;
             let post = state.feedPost.find((likedPost) => likedPost._id === action.payload._id )
             post.likedBy = action.payload?.likedBy;
         },
 
-        [unlikePost.pending]: (state, action) => {
-            state.postLoading = true;
-        },
-
         [unlikePost.fulfilled]: (state, action) => {
-            state.postLoading = false;
             let post = state.feedPost.find((unlikedPost) => unlikedPost._id === action.payload._id )
             post.likedBy = action.payload?.likedBy;
         }

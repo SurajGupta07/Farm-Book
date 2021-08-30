@@ -28,7 +28,7 @@ export const FollowUsers = () => {
         </div>
       ) : (
         <ul>
-          {followProfiles?.map((userProfile) => {
+          {Array.isArray(followProfiles) ? (followProfiles?.map((userProfile) => {
             return (
               <div
                 key={userProfile?._id}
@@ -54,7 +54,8 @@ export const FollowUsers = () => {
                 </ul>
               </div>
             );
-          })}
+          })) : (<div><strong>Server Down!</strong></div>)
+          }
         </ul>
       )}
     </div>
