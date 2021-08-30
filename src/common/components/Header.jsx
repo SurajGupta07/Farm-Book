@@ -11,7 +11,9 @@ export const Header = () => {
     <header>
       <div className="flex shadow-lg h-auto w-screen bg-gray-300">
         <h1 className="flex py-4 pl-4 text-4xl font-bold tracking-wide leading-snug text-gray-700">
-          FARMBOOK
+          <Link to="/">
+            FARMBOOK
+          </Link>
         </h1>
         <div className="flex gap-8 items-center links_container">
           {token && (
