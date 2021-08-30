@@ -16,9 +16,10 @@ export const FollowUserProfile = () => {
   const followUserId = useSelector((state) => state.auth.followUser._id)
   var token = useSelector((state) => state.auth.token);
   const userId = useSelector((state) => state.auth.data._id);
+
   useEffect(() => {
     dispatch(getCurrentUserData(username, token)); // eslint-disable-next-line
-  }, [username]);
+  });
 
   const handleFollow = (e) => {
     e.preventDefault();

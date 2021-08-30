@@ -82,7 +82,7 @@ export const Feed = () => {
                               let postId = post._id;
                               dispatch(unlikePost({ postId, userId }));
                             }}
-                            className="fa fa-thumbs-down text-4xl opacity-70 action--button outline-none"
+                            className="fa fa-thumbs-up text-4xl opacity-50 action--button outline-none"
                           ></button>
                         ) : (
                           <button

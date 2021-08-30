@@ -203,6 +203,24 @@ export const authSlice = createSlice({
       state.errorMessage = action.error.message;
     },
 
+    [addFollowUser.pending]: (state, action) => {
+      state.isUserLoading = true;
+    },
+
+    [addFollowUser.fulfilled]: (state, action) => {
+      state.isUserLoading = false;
+      state.followUser = action.payload?.followUser;
+    },
+
+    [removeFollowing.pending]: (state, action) => {
+      state.isUserLoading = true;
+    },
+
+    [removeFollowing.fulfilled]: (state, action) => {
+      state.isUserLoading = false;
+      state.followUser = action.payload?.followUser;
+    },
+
     [getFollowSuggetions.pending]: (state, action) => {
       state.isUserLoading = true;
     },
