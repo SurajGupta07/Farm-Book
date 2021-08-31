@@ -38,14 +38,14 @@ export const Feed = () => {
         {showList && <FollowUsers />}
       </div>
       {!createPost && (
-        <div className="fixed bottom-6 md:right-96 -mr-2 md:bottom-20">
+        <div className="button-post">
           <button
             onClick={() => {
               setCreatePost(true);
               setShowList(false);
               setShowPosts(false);
             }}
-            className="rounded h-10 md:h-12 w-20 md:w-28 md:text-xl flex justify-center items-center bg-blue-500 font-bold text-white shadow-lg disabled:opacity-80"
+            className="rounded h-12 w-28 text-xl justify-center items-center bg-blue-500 font-bold text-white shadow-lg"
           >
             Post
           </button>
