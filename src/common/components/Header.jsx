@@ -9,7 +9,7 @@ export const Header = () => {
   const navigate = useNavigate();
   const profileURL = useSelector((state) => state.auth.data.profileURL);
   const username = useSelector((state) => state.auth.data.username);
-  let token = useSelector((state) => state.auth.token);
+  let token = localStorage.getItem('login')
   return (
     <header>
       <div className="flex shadow-lg h-auto w-screen bg-gray-300">
