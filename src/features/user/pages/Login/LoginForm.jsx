@@ -72,10 +72,6 @@ export const Login = () => {
             Signup
           </Link>
         </div>
-        <div className="mt-4">
-          <p>Email - <strong>test@gmail.com</strong></p>{" "}
-          <p>Password - <strong>123456</strong></p>
-        </div>
       </form>
     </div>
   );

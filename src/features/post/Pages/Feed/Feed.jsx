@@ -73,8 +73,8 @@ export const Feed = () => {
                           width="40px"
                         />
                         <img className="h-60 w-96" src={post?.postImage} alt="post-img"/>
-                        <p>{post?.content}</p>
-                        <p className="pt-8">{post?.likedBy?.length} likes</p>
+                        <p className="pr-8">{post?.content}</p>
+                        <p className="pt-2">{post?.likedBy?.length} likes</p>
                         {post?.likedBy?.includes(userId) ? (
                           <button
                             onClick={(e) => {

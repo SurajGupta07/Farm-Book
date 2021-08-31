@@ -3,6 +3,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { useNavigate, useParams } from "react-router";
 import { getAllUserCreatedPosts } from "../../../post/postSlice";
 import { UserPosts } from "./UserPosts";
+import { logOutUser } from "../../authSlice";
 
 export const UserProfile = () => {
   const navigate = useNavigate();
@@ -14,12 +15,6 @@ export const UserProfile = () => {
   useEffect(() => {
     dispatch(getAllUserCreatedPosts({ username, token }));
   }, [dispatch, username, token]);
-
-  const logOutUser = (e) => {
-    e.preventDefault();
-    localStorage?.removeItem("login");
-    navigate("/login");
-  };
 
   return (
     <div className="items-center mt-6 justify-center flex flex-col">
@@ -52,7 +47,10 @@ export const UserProfile = () => {
       </div>
       <div className="pointer-events">
         <button
-          onClick={(e) => logOutUser(e)}
+          onClick={() => {
+            dispatch(logOutUser())
+            navigate('/login')
+          }}
           className="rounded h-10 md:h-12 w-20 md:w-28 md:text-xl flex justify-center items-center bg-blue-500 font-bold text-white shadow-lg"
         >
           Logout
