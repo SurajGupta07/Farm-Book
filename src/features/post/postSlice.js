@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import axios from "axios";
 import { MAIN_URL } from "../../common/dbConnect";
@@ -104,7 +105,6 @@ export const postSlice = createSlice({
         [postTweet.fulfilled]: (state, action) => {
             state.postLoading = false;
             state.feedPost = [...state.feedPost, action.payload.post];
-            console.log(state.postList.length, 'list')
         },
 
         [getAllUserCreatedPosts.pending]: (state, action) => {

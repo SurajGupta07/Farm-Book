@@ -1,8 +1,10 @@
+/* eslint-disable react/no-unescaped-entities */
 import axios from "axios";
 import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Button } from "../../../../common/components/Button";
 import { postTweet } from "../../postSlice";
+import { throttleShoot, throttleImageUpload } from "../../controllers/post.controller";
 
 export const CreateNewPost = ({ setCreatePost, setShowList, setShowPosts }) => {
   let [content, setContent] = useState("");
@@ -12,8 +14,7 @@ export const CreateNewPost = ({ setCreatePost, setShowList, setShowPosts }) => {
   const [image, setImage] = useState("");
   const [imageURL, setImageURl] = useState("");
 
-  const postOnClick = (e) => {
-    e.preventDefault();
+  const postOnClick = () => {
     if (imageURL !== "" || undefined || null){
       dispatch(postTweet({ content, userId, token, imageURL }));
       setCreatePost(false);
@@ -22,9 +23,7 @@ export const CreateNewPost = ({ setCreatePost, setShowList, setShowPosts }) => {
     }
   };
 
-  const uploadHander = async (e) => {
-    e.target.innerHTML = 'Uploaded'
-    e.preventDefault();
+  const uploadHander = async () => {
     if (!image) {
       console.log("Image is required");
     }
@@ -73,7 +72,7 @@ export const CreateNewPost = ({ setCreatePost, setShowList, setShowPosts }) => {
               }}
             />{imageURL ? <img className="mt-4 mb-4" src={imageURL} alt="img preview" height="300px" width="300px"/> : <p><strong>Cannot shoot without an Image!</strong></p>}
             <button
-              onClick={(e) => uploadHander(e)}
+              onClick={throttleImageUpload(uploadHander, 1000)}
               className="rounded h-10 w-20 flex justify-center items-center bg-blue-500 font-bold text-white shadow-lg disabled:opacity-80 mt-2"
             >
               UPLOAD
@@ -84,7 +83,7 @@ export const CreateNewPost = ({ setCreatePost, setShowList, setShowPosts }) => {
           </div>
         </div>
         <div className="flex justify-end pt-2 mt-3">
-          <Button text="Shoot" callback={(e) => postOnClick(e)} />
+          <Button text="Shoot" callback={throttleShoot(postOnClick, 1000)} />
         </div>
       </div>
     </div>
