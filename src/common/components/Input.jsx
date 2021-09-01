@@ -5,7 +5,7 @@ export const Input = ({
   onChange,
   autocomplete,
   value,
-  name
+  name,
 }) => {
   return (
     <input

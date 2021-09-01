@@ -4,7 +4,7 @@ import { useNavigate, useParams } from "react-router";
 import {
   getCurrentUserData,
   addFollowUser,
-  removeFollowing
+  removeFollowing,
 } from "../../features/user/authSlice";
 import { Button } from "./Button";
 
@@ -13,7 +13,7 @@ export const FollowUserProfile = () => {
   const navigate = useNavigate();
   var { username } = useParams();
   const followProfile = useSelector((state) => state.auth.followUser);
-  const followUserId = useSelector((state) => state.auth.followUser._id)
+  const followUserId = useSelector((state) => state.auth.followUser._id);
   var token = useSelector((state) => state.auth.token);
   const userId = useSelector((state) => state.auth.data._id);
 
@@ -28,8 +28,8 @@ export const FollowUserProfile = () => {
 
   const handleUnFollow = (e) => {
     e.preventDefault();
-    dispatch(removeFollowing({followUserId, userId}))
-  }
+    dispatch(removeFollowing({ followUserId, userId }));
+  };
 
   return (
     <div className="items-center mt-6 justify-center flex flex-col">
@@ -46,7 +46,11 @@ export const FollowUserProfile = () => {
           <div className="text-gray-400 -mt-1">@{followProfile?.username}</div>
         </div>
         <div className="ml-8">
-          {followProfile?.followersList?.includes(userId) ? <Button text="Unfollow" callback={handleUnFollow}/> : <Button text="Follow" callback={handleFollow} />}
+          {followProfile?.followersList?.includes(userId) ? (
+            <Button text="Unfollow" callback={handleUnFollow} />
+          ) : (
+            <Button text="Follow" callback={handleFollow} />
+          )}
         </div>
       </div>
       <div className="mt-6 rounded md:mx-16">{followProfile?.bio}</div>

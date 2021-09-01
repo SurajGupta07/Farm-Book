@@ -8,7 +8,10 @@ import { useNavigate } from "react-router";
 
 export const Login = () => {
   let [error, setError] = useState("");
-  const [userData, setUserData] = useState({email: "suraj@gmail.com", password: 123456})
+  const [userData, setUserData] = useState({
+    email: "suraj@gmail.com",
+    password: 123456,
+  });
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const loggedIn = useSelector((state) => state.auth.isUserLoggedIn);
@@ -27,7 +30,7 @@ export const Login = () => {
         [name]: value,
       };
     });
-  }
+  };
 
   const handleLogin = (e) => {
     e.preventDefault();
@@ -49,7 +52,13 @@ export const Login = () => {
           Login to see posts from your friends.
         </div>
         <div className="my-3">
-          <Input id="email" placeholder="Enter your Email" name="email" value={userData.email} onChange={handleChange} />
+          <Input
+            id="email"
+            placeholder="Enter your Email"
+            name="email"
+            value={userData.email}
+            onChange={handleChange}
+          />
         </div>
         <div className="my-3">
           <Input
@@ -58,8 +67,8 @@ export const Login = () => {
             type="password"
             placeholder="Enter your password"
             autocomplete="off"
-            value = {userData.password}
-            onChange = {handleChange}
+            value={userData.password}
+            onChange={handleChange}
           />
         </div>
         <div className="text-red-500 text-sm font-semibold">{error}</div>

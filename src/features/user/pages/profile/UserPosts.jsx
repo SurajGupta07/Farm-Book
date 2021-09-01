@@ -17,7 +17,11 @@ export const UserPosts = () => {
               <div className="card" key={post._id}>
                 <div className="card_box"> </div>
                 <div className="card_text title-black">
-                  <img className="h-60 w-96 pt-12" src={post?.postImage} alt="post-img"/>
+                  <img
+                    className="h-60 w-96 pt-12"
+                    src={post?.postImage}
+                    alt="post-img"
+                  />
                   <p className="pt-8">{post?.content}</p>
                   <p className="pt-4">{post?.likedBy?.length} likes</p>
                 </div>

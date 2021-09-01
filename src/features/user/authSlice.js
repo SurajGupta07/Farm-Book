@@ -2,8 +2,9 @@ import axios from "axios";
 import { MAIN_URL } from "../../common/dbConnect";
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 
-export const signupUser = createAsyncThunk("auth/signup", 
-async ({ name, username, email, password }) => {
+export const signupUser = createAsyncThunk(
+  "auth/signup",
+  async ({ name, username, email, password }) => {
     try {
       const res = await axios.post(`${MAIN_URL}/user/signup`, {
         user: {
@@ -12,129 +13,146 @@ async ({ name, username, email, password }) => {
           email,
           password,
           bio: `Hi there! I'm ${name}`,
-          profileURL: 'https://res.cloudinary.com/farmbook07/image/upload/v1627628803/profile-user_zxntqf.png',
+          profileURL:
+            "https://res.cloudinary.com/farmbook07/image/upload/v1627628803/profile-user_zxntqf.png",
           followingList: [],
           followersList: [],
         },
       });
       if (res.status === 201) {
-        localStorage.setItem("login", JSON.stringify({ token: res.data.token, isUserLoggedIn: true }));
+        localStorage.setItem(
+          "login",
+          JSON.stringify({ token: res.data.token, isUserLoggedIn: true })
+        );
       }
       return res.data;
     } catch (error) {
       console.log("ERROR MESSAGE: ", error.message);
     }
   }
-)
+);
 
-export const loginUser = createAsyncThunk("/login", 
-async ({ email, password }) => {
+export const loginUser = createAsyncThunk(
+  "/login",
+  async ({ email, password }) => {
     try {
-      const res = await axios.post(`${MAIN_URL}/user/login`, { email, password });
+      const res = await axios.post(`${MAIN_URL}/user/login`, {
+        email,
+        password,
+      });
       if (res.status === 201) {
-        localStorage.setItem("login", JSON.stringify({ token: res.data.token, isUserLoggedIn: true }));
+        localStorage.setItem(
+          "login",
+          JSON.stringify({ token: res.data.token, isUserLoggedIn: true })
+        );
       }
       return res.data;
     } catch (error) {
       console.log("ERROR MESSAGE: ", error.response);
     }
   }
-)
+);
 
-export const getCurrentUserData = createAsyncThunk("auth/username", 
-async (username, token) => {
-  try {
-    const res = await axios.get(`${MAIN_URL}/user/${username}`, {
-      headers: {
-        authorization: token
-      } 
-    });
-    return res.data.userDetails;
-  } catch (error) {
-    console.error(error);
+export const getCurrentUserData = createAsyncThunk(
+  "auth/username",
+  async (username, token) => {
+    try {
+      const res = await axios.get(`${MAIN_URL}/user/${username}`, {
+        headers: {
+          authorization: token,
+        },
+      });
+      return res.data.userDetails;
+    } catch (error) {
+      console.error(error);
+    }
   }
-});
+);
 
-export const getUserNetwork = createAsyncThunk("auth/network", 
-  async({username, token}) => {
-    try{
+export const getUserNetwork = createAsyncThunk(
+  "auth/network",
+  async ({ username, token }) => {
+    try {
       const res = await axios.get(`${MAIN_URL}/user/network/${username}`, {
         headers: {
-          authorization: token
-        }
+          authorization: token,
+        },
       });
-      return res.data.user
-    }
-    catch(err) {
-      console.log(err)
+      return res.data.user;
+    } catch (err) {
+      console.log(err);
     }
   }
-)
+);
 
-export const getFollowSuggetions = createAsyncThunk("auth/follow", 
-  async(token) => {
-    try{
+export const getFollowSuggetions = createAsyncThunk(
+  "auth/follow",
+  async (token) => {
+    try {
       const res = await axios.get(`${MAIN_URL}/user/getall`, {
         headers: {
           authorization: token,
-        }
-      })
+        },
+      });
       return res.data.users;
-    } 
-    catch(err) {
-      console.log(err)
+    } catch (err) {
+      console.log(err);
     }
   }
-)
+);
 
-export const addFollowUser = createAsyncThunk("auth/follow", 
-  async({followUserId, userId}) => {
-    try{  
+export const addFollowUser = createAsyncThunk(
+  "auth/follow",
+  async ({ followUserId, userId }) => {
+    try {
       const res = await axios.post(`${MAIN_URL}/user/follow/new`, {
-        followUserId, userId
-      })
-      return res.data
-    } catch(err) {
-      console.log(err)
+        followUserId,
+        userId,
+      });
+      return res.data;
+    } catch (err) {
+      console.log(err);
     }
   }
-) 
+);
 
-export const removeFollowing = createAsyncThunk("auth/unfollow",
-  async({followUserId, userId}) => {
-    try{  
+export const removeFollowing = createAsyncThunk(
+  "auth/unfollow",
+  async ({ followUserId, userId }) => {
+    try {
       const res = await axios.post(`${MAIN_URL}/user/follow/remove`, {
-        followUserId, userId
-      })
-      return res.data
-    } catch(err) {
-      console.log(err)
+        followUserId,
+        userId,
+      });
+      return res.data;
+    } catch (err) {
+      console.log(err);
     }
   }
-)
+);
 
 export const authSlice = createSlice({
-  name: 'auth',
+  name: "auth",
   initialState: {
     data: {
-      _id: '',
-      name: '',
-      email: '',
-      username: '',
-      bio: '',
-      profileURL: '',
+      _id: "",
+      name: "",
+      email: "",
+      username: "",
+      bio: "",
+      profileURL: "",
       followingList: [],
       followersList: [],
     },
-    followUser: '',
-    token: '',
+    followUser: "",
+    token: "",
     isUserLoggedIn: false,
     isUserLoading: false,
     isError: false,
-    errorMessage: '',
-    userNetwork: '',
+    errorMessage: "",
+    userNetwork: "",
     followUsers: [],
-    userCreatedPosts: []
+    userCreatedPosts: [],
   },
 
   reducers: {
@@ -167,7 +185,7 @@ export const authSlice = createSlice({
       state.isUserLoading = false;
       state.isUserLoggedIn = true;
       state.data = action.payload?.userData;
-      state.token = action.payload.token
+      state.token = action.payload.token;
       state.isError = false;
       state.errorMessage = "";
     },
@@ -179,34 +197,34 @@ export const authSlice = createSlice({
     },
 
     [loginUser.pending]: (state, action) => {
-      state.isUserLoading = true
+      state.isUserLoading = true;
     },
-  
+
     [loginUser.fulfilled]: (state, action) => {
       state.isUserLoading = false;
       state.isUserLoggedIn = true;
       state.data = action.payload.user;
       state.token = action.payload.token;
       state.isError = false;
-      state.errorMessage = '';
+      state.errorMessage = "";
     },
-  
+
     [loginUser.rejected]: (state, action) => {
       state.isUserLoading = false;
       state.isError = true;
       state.errorMessage = action.error.message;
     },
-  
+
     [getCurrentUserData.pending]: (state, action) => {
       state.isUserLoading = true;
     },
-  
+
     [getCurrentUserData.fulfilled]: (state, action) => {
       state.isUserLoading = false;
       state.isUserLoggedIn = true;
       state.followUser = action.payload;
     },
-  
+
     [getCurrentUserData.rejected]: (state, action) => {
       state.isError = true;
       state.errorMessage = action.error.message;
@@ -253,10 +271,9 @@ export const authSlice = createSlice({
     [getFollowSuggetions.rejected]: (state, action) => {
       state.isError = true;
       state.errorMessage = action.error.message;
-    }
-  }
-
-})
+    },
+  },
+});
 
 export const { logOutUser } = authSlice.actions;
 

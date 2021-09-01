@@ -28,34 +28,41 @@ export const FollowUsers = () => {
         </div>
       ) : (
         <ul>
-          {Array.isArray(followProfiles) ? (followProfiles?.map((userProfile) => {
-            return (
-              <div
-                key={userProfile?._id}
-                className="flex items-center cursor-pointer"
-                onClick={() => {
-                  navigate(`/follow/${userProfile.username}`);
-                }}
-              >
-                <ul className="mb-4 mr-8">
-                  <div className="ml-4 flex-col pb-4">
-                    <li className="font-semibold ml-12">{userProfile?.name}</li>
-                    <li className="text-gray-400 -mt-1 ml-12">
-                      @{userProfile?.username}
+          {Array.isArray(followProfiles) ? (
+            followProfiles?.map((userProfile) => {
+              return (
+                <div
+                  key={userProfile?._id}
+                  className="flex items-center cursor-pointer"
+                  onClick={() => {
+                    navigate(`/follow/${userProfile.username}`);
+                  }}
+                >
+                  <ul className="mb-4 mr-8">
+                    <div className="ml-4 flex-col pb-4">
+                      <li className="font-semibold ml-12">
+                        {userProfile?.name}
+                      </li>
+                      <li className="text-gray-400 -mt-1 ml-12">
+                        @{userProfile?.username}
+                      </li>
+                    </div>
+                    <li>
+                      <img
+                        src={userProfile?.profileURL}
+                        alt="profile url"
+                        className="rounded-full w-10 h-10 -mt-14 cursor-pointer overflow-hidden"
+                      />
                     </li>
-                  </div>
-                  <li>
-                    <img
-                      src={userProfile?.profileURL}
-                      alt="profile url"
-                      className="rounded-full w-10 h-10 -mt-14 cursor-pointer overflow-hidden"
-                    />
-                  </li>
-                </ul>
-              </div>
-            );
-          })) : (<div><strong>Server Down!</strong></div>)
-          }
+                  </ul>
+                </div>
+              );
+            })
+          ) : (
+            <div>
+              <strong>Server Down!</strong>
+            </div>
+          )}
         </ul>
       )}
     </div>

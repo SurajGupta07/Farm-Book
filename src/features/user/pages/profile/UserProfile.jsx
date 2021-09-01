@@ -48,8 +48,8 @@ export const UserProfile = () => {
       <div className="pointer-events">
         <button
           onClick={() => {
-            dispatch(logOutUser())
-            navigate('/login')
+            dispatch(logOutUser());
+            navigate("/login");
           }}
           className="rounded h-10 md:h-12 w-20 md:w-28 md:text-xl flex justify-center items-center bg-blue-500 font-bold text-white shadow-lg"
         >

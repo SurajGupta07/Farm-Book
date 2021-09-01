@@ -1,10 +1,12 @@
-/* eslint-disable react/no-unescaped-entities */
 import axios from "axios";
 import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Button } from "../../../../common/components/Button";
 import { postTweet } from "../../postSlice";
-import { throttleShoot, throttleImageUpload } from "../../controllers/post.controller";
+import {
+  throttleShoot,
+  throttleImageUpload,
+} from "../../controllers/post.controller";
 
 export const CreateNewPost = ({ setCreatePost, setShowList, setShowPosts }) => {
   let [content, setContent] = useState("");
@@ -15,11 +17,11 @@ export const CreateNewPost = ({ setCreatePost, setShowList, setShowPosts }) => {
   const [imageURL, setImageURl] = useState("");
 
   const postOnClick = () => {
-    if (imageURL !== "" || undefined || null){
+    if (imageURL !== "" || undefined || null) {
       dispatch(postTweet({ content, userId, token, imageURL }));
       setCreatePost(false);
       setShowList(true);
-      setShowPosts(true); 
+      setShowPosts(true);
     }
   };
 
@@ -41,7 +43,7 @@ export const CreateNewPost = ({ setCreatePost, setShowList, setShowPosts }) => {
       setImageURl(response.data.secure_url);
       return response.data;
     } catch (error) {
-      console.error("error occured while uploading the image: ", {error});
+      console.error("error occured while uploading the image: ", { error });
     }
   };
 
@@ -70,7 +72,20 @@ export const CreateNewPost = ({ setCreatePost, setShowList, setShowPosts }) => {
               onChange={(e) => {
                 setImage(e.target.files[0]);
               }}
-            />{imageURL ? <img className="mt-4 mb-4" src={imageURL} alt="img preview" height="300px" width="300px"/> : <p><strong>Cannot shoot without an Image!</strong></p>}
+            />
+            {imageURL ? (
+              <img
+                className="mt-4 mb-4"
+                src={imageURL}
+                alt="img preview"
+                height="300px"
+                width="300px"
+              />
+            ) : (
+              <p>
+                <strong>Cannot shoot without an Image!</strong>
+              </p>
+            )}
             <button
               onClick={throttleImageUpload(uploadHander, 1000)}
               className="rounded h-10 w-20 flex justify-center items-center bg-blue-500 font-bold text-white shadow-lg disabled:opacity-80 mt-2"
