@@ -63,8 +63,9 @@ export const CreateNewPost = ({ setCreatePost, setShowList, setShowPosts }) => {
         </button>
         <div className="relative">
           <textarea
+            style={{resize: 'none'}}
             onChange={(e) => setContent(e.target.value)}
-            className="p-3 w-full h-48 flex-1 appearance-none border border-transparent bg-white text-gray-700 placeholder-gray-400 shadow-md rounded focus:outline-none focus:ring-2 focus:ring-blue-400 focus:border-transparent text-lg"
+            className="p-3 w-full h-16 flex-1 appearance-none border border-transparent bg-white text-gray-700 placeholder-gray-400 shadow-md rounded focus:outline-none focus:ring-2 focus:ring-blue-400 focus:border-transparent text-lg"
           ></textarea>
           <div>
             <input
@@ -78,8 +79,8 @@ export const CreateNewPost = ({ setCreatePost, setShowList, setShowPosts }) => {
                 className="mt-4 mb-4"
                 src={imageURL}
                 alt="img preview"
-                height="300px"
-                width="300px"
+                height="200px"
+                width="200px"
               />
             ) : (
               <p>
@@ -93,8 +94,8 @@ export const CreateNewPost = ({ setCreatePost, setShowList, setShowPosts }) => {
               UPLOAD
             </button>
           </div>
-          <div className="absolute  bg-white shadow-xl px-2 rounded-md text-red-600 font-bold">
-            {content.length}/200
+          <div className="absolute bg-white shadow-xl px-2 rounded-md text-red-600 font-bold">
+            {content.length}/100
           </div>
         </div>
         <div className="flex justify-end pt-2 mt-3">
