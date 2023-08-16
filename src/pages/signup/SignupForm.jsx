@@ -1,10 +1,11 @@
-import { useState, useEffect } from "react";
-import { Link } from "react-router-dom";
+import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { Input } from "../../../../common/components/Input";
-import { Button } from "../../../../common/components/Button";
-import { signupUser } from "../../authSlice";
 import { useNavigate } from "react-router";
+import { Link } from "react-router-dom";
+
+import { Button } from "../../common/components/Button";
+import { Input } from "../../common/components/Input";
+import { signupUser } from "../../features/user/authSlice";
 
 export const Signup = () => {
   let [error, setError] = useState("");
@@ -72,5 +73,3 @@ export const Signup = () => {
     </div>
   );
 };
-
-export default Signup;

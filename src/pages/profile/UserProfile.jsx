@@ -1,9 +1,9 @@
 import { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { useNavigate, useParams } from "react-router";
-import { getAllUserCreatedPosts } from "../../../post/postSlice";
+import { getAllUserCreatedPosts } from "../../features/post/postSlice";
 import { UserPosts } from "./UserPosts";
-import { logOutUser } from "../../authSlice";
+import { logOutUser } from "../../features/user/authSlice";
 
 export const UserProfile = () => {
   const navigate = useNavigate();

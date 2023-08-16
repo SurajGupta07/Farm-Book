@@ -1,5 +1,5 @@
 import { useSelector } from "react-redux";
-import Loading from "../../../../common/assets/loading.gif";
+import Loading from "../../common/assets/loading.gif";
 
 export const UserPosts = () => {
   const userPost = useSelector((state) => state.post.userPostList);

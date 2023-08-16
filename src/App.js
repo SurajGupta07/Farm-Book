@@ -1,15 +1,16 @@
 import React from "react";
-import { Routes, Route } from "react-router-dom";
+import { Route, Routes } from "react-router-dom";
 import "./App.css";
-import SignupForm from "./features/user/pages/signup/SignupForm";
-import LoginForm from "./features/user/pages/Login/LoginForm";
-import { PrivateRoute } from "./common/components/PrivateRoute";
-import { UserProfile } from "./features/user/pages/profile/UserProfile";
-import { Feed } from "./features/post/Pages/Feed/Feed";
+
+import { FollowUserProfile } from "./common/components/FollowUserProfile";
 import { Header } from "./common/components/Header";
 import { Network } from "./common/components/Network";
-import { FollowUserProfile } from "./common/components/FollowUserProfile";
-import Notfound from "./common/components/NotFound";
+import { Notfound } from "./common/components/NotFound";
+import { PrivateRoute } from "./common/components/PrivateRoute";
+import { Feed } from "./features/post/Pages/Feed/Feed";
+import { UserProfile } from "./pages/profile/UserProfile";
+import { Login } from "./pages/login/LoginForm";
+import { Signup } from "./pages/signup/SignupForm";
 
 function App() {
   return (
@@ -22,8 +23,8 @@ function App() {
           path="/follow/:username"
           element={<FollowUserProfile />}
         />
-        <Route path="/signup" element={<SignupForm />} />
-        <Route path="/login" element={<LoginForm />} />
+        <Route path="/signup" element={<Signup />} />
+        <Route path="/login" element={<Login />} />
         <PrivateRoute path="/:username/network" element={<Network />} />
         <Route path="*" element={<Notfound />} />
       </Routes>

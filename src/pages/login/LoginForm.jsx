@@ -1,10 +1,11 @@
 import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import { Input } from "../../../../common/components/Input";
-import { Button } from "../../../../common/components/Button";
-import { loginUser } from "../../authSlice";
+import { Input } from "../../common/components/Input";
+import { Button } from "../../common/components/Button";
+
 import { useNavigate } from "react-router";
+import { loginUser } from "../../features/user/authSlice";
 
 export const Login = () => {
   let [error, setError] = useState("");
@@ -85,5 +86,3 @@ export const Login = () => {
     </div>
   );
 };
-
-export default Login;
