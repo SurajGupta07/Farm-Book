@@ -1,11 +1,6 @@
-import { Navigate, Route } from "react-router";
+import { Navigate } from "react-router";
 
-export const PrivateRoute = ({ path, element }) => {
+export const PrivateRoute = ({ children }) => {
   const token = localStorage?.getItem("login");
-
-  return token ? (
-    <Route path={path} element={element} />
-  ) : (
-    <Navigate state={{ from: path }} to="/login" />
-  );
+  return token ? children : <Navigate to="/login" />;
 };
