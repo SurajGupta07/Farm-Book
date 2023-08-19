@@ -1,6 +1,6 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import axios from "axios";
-import { MAIN_URL } from "../../common/dbConnect";
+import { MAIN_URL } from "../../utils/endpoints";
 
 export const postTweet = createAsyncThunk(
   "post/createPost",

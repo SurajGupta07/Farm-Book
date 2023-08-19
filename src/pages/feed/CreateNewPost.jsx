@@ -1,12 +1,9 @@
 import axios from "axios";
 import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { Button } from "../../../../common/components/Button";
-import { postTweet } from "../../postSlice";
-import {
-  throttleShoot,
-  throttleImageUpload,
-} from "../../controllers/post.controller";
+import { Button } from "../../common/components/Button";
+import { postTweet } from "../../features/post/postSlice";
+import { throttleShoot } from "../../utils/helpers";
 
 export const CreateNewPost = ({ setCreatePost, setShowList, setShowPosts }) => {
   let [content, setContent] = useState("");
@@ -63,7 +60,7 @@ export const CreateNewPost = ({ setCreatePost, setShowList, setShowPosts }) => {
         </button>
         <div className="relative">
           <textarea
-            style={{resize: 'none'}}
+            style={{ resize: "none" }}
             onChange={(e) => setContent(e.target.value)}
             className="p-3 w-full h-16 flex-1 appearance-none border border-transparent bg-white text-gray-700 placeholder-gray-400 shadow-md rounded focus:outline-none focus:ring-2 focus:ring-blue-400 focus:border-transparent text-lg"
           ></textarea>
@@ -88,7 +85,7 @@ export const CreateNewPost = ({ setCreatePost, setShowList, setShowPosts }) => {
               </p>
             )}
             <button
-              onClick={throttleImageUpload(uploadHander, 1000)}
+              onClick={throttleShoot(uploadHander, 1000)}
               className="rounded h-10 w-20 flex justify-center items-center bg-blue-500 font-bold text-white shadow-lg disabled:opacity-80 mt-2"
             >
               UPLOAD

@@ -1,24 +1,22 @@
 import { useEffect, useState } from "react";
-import { FollowUsers } from "../../../../common/components/FollowUser";
-import { CreateNewPost } from "./CreateNewPost";
 import { useDispatch, useSelector } from "react-redux";
-import { getFeed } from "../../postSlice";
-import Loading from "../../../../common/assets/loading.gif";
-import { likePost } from "../../postSlice";
-import { unlikePost } from "../../postSlice";
+import Loading from "../../common/assets/loading.gif";
+import { FollowUsers } from "../../common/components/FollowUser";
+import { getFeed, likePost, unlikePost } from "../../features/post/postSlice";
+import { CreateNewPost } from "./CreateNewPost";
 
 export const Feed = () => {
   const dispatch = useDispatch();
   const [createPost, setCreatePost] = useState(false);
   const [showList, setShowList] = useState(true);
   const [showPosts, setShowPosts] = useState(true);
-  let token = useSelector((state) => state.auth.token);
-  let posts = useSelector((state) => state.post.feedPost);
-  let loading = useSelector((state) => state.post.postLoading);
-  let userId = useSelector((state) => state.auth.data._id);
+  const token = useSelector((state) => state.auth.token);
+  const posts = useSelector((state) => state.post.feedPost);
+  const loading = useSelector((state) => state.post.postLoading);
+  const userId = useSelector((state) => state.auth.data._id);
 
   useEffect(() => {
-    dispatch(getFeed(token)); // eslint-disable-next-line
+    dispatch(getFeed(token));
   }, [dispatch, token]);
 
   return (

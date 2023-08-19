@@ -7,10 +7,10 @@ import { Header } from "./common/components/Header";
 import { Network } from "./common/components/Network";
 import { Notfound } from "./common/components/NotFound";
 import { PrivateRoute } from "./common/components/PrivateRoute";
-import { Feed } from "./features/post/Pages/Feed/Feed";
-import { Login } from "./pages/login/LoginForm";
 import { UserProfile } from "./pages/profile/UserProfile";
 import { Signup } from "./pages/signup/SignupForm";
+import { Login } from "./pages/login/LoginForm";
+import { Feed } from "./pages/feed/Feed";
 
 function App() {
   return (
