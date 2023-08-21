@@ -3,14 +3,14 @@ import { Route, Routes } from "react-router-dom";
 
 import "./App.css";
 import { FollowUserProfile } from "./common/components/FollowUserProfile";
-import { Header } from "./common/components/Header";
 import { Network } from "./common/components/Network";
 import { Notfound } from "./common/components/NotFound";
 import { PrivateRoute } from "./common/components/PrivateRoute";
+import { Header } from "./common/components/header/Header";
+import { Feed } from "./pages/feed/Feed";
+import { Login } from "./pages/login/LoginForm";
 import { UserProfile } from "./pages/profile/UserProfile";
 import { Signup } from "./pages/signup/SignupForm";
-import { Login } from "./pages/login/LoginForm";
-import { Feed } from "./pages/feed/Feed";
 
 function App() {
   return (

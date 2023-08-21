@@ -3,116 +3,112 @@
 @tailwind utilities;
 
 .follow__users--container {
-    display: flex;
-    justify-content: flex-end;
+  display: flex;
+  justify-content: flex-end;
 }
 
 .cards-list {
-    z-index: 0;
-    width: 100%;
-    display: flex;
-    justify-content: space-around;
-    flex-wrap: wrap;
+  z-index: 0;
+  width: 100%;
+  display: flex;
+  justify-content: space-around;
+  flex-wrap: wrap;
 }
 
 .notFound {
-    display: block;
-    margin-left: auto;
-    margin-right: auto;
-    width: 50%;
-    margin-top: 4rem;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  width: 50%;
+  margin-top: 4rem;
 }
 
 .card {
-    width: 500px;
-    height: 500px;
-    border-radius: 30px;
-    box-shadow: 5px 5px 25px 7px rgba(0, 0, 0, 0.25),
-        -5px -5px 30px 7px rgba(0, 0, 0, 0.22);
-    cursor: pointer;
-    transition: 0.4s;
-    margin-bottom: 2rem;
+  width: 500px;
+  height: 500px;
+  border-radius: 30px;
+  box-shadow: 5px 5px 25px 7px rgba(0, 0, 0, 0.25),
+    -5px -5px 30px 7px rgba(0, 0, 0, 0.22);
+  cursor: pointer;
+  transition: 0.4s;
+  margin-bottom: 2rem;
 }
 
 .card .card_box {
-    width: inherit;
-    height: inherit;
-    border-radius: 30px;
+  width: inherit;
+  height: inherit;
+  border-radius: 30px;
 }
 
 .card .card_text {
-    border-radius: 0px 0px 30px 30px;
-    margin-left: 30px;
-    margin-top: -480px;
+  border-radius: 0px 0px 30px 30px;
+  margin-left: 30px;
+  margin-top: -480px;
 }
 
 .title-black {
-    color: black;
-}
-
-.links_container {
-    margin-left: 70rem;
+  color: black;
 }
 
 .centeradiv {
-    margin: auto !important;
-    width: 50%;
-    position: relative;
-    top: -300px;
-    padding-left: 100px;
+  margin: auto !important;
+  width: 50%;
+  position: relative;
+  top: -300px;
+  padding-left: 100px;
 }
 
 .pointer-events {
-    position: absolute;
-    right: 450px;
-    top: 110px;
+  position: absolute;
+  right: 450px;
+  top: 110px;
 }
 
 .network__tab {
-    margin: auto;
-    width: 50%;
-    padding: 10px;
+  margin: auto;
+  width: 50%;
+  padding: 10px;
 }
 
 .network_list {
-    font-size: 20px;
-    font-weight: 400;
-    display: inline;
-    margin: 2rem;
+  font-size: 20px;
+  font-weight: 400;
+  display: inline;
+  margin: 2rem;
 }
 
 .button-post {
-    display: flex;
-    justify-content: flex-end;
-    margin-right: 17rem;
-    margin-top: 5rem;
+  display: flex;
+  justify-content: flex-end;
+  margin-right: 17rem;
+  margin-top: 5rem;
 }
 
 @media all and (max-width: 500px) {
-    .card-list {
-        flex-direction: column;
-    }
+  .card-list {
+    flex-direction: column;
+  }
 }
 
 @media only screen and (max-width: 600px) {
-    .follow__users--container {
-        display: flex;
-        justify-content: flex-start;
-        margin-left: 1rem;
-    }
+  .follow__users--container {
+    display: flex;
+    justify-content: flex-start;
+    margin-left: 1rem;
+  }
 
-    .follow_users {
-        width: 80% !important;
-    }
+  .follow_users {
+    width: 80% !important;
+  }
 
-    .centeradiv {
-        margin-top: 200px !important;
-        margin-left: -5rem !important;
-        width: 50%;
-    }
+  .centeradiv {
+    margin-top: 200px !important;
+    margin-left: -5rem !important;
+    width: 50%;
+  }
 
-    .card {
-        width: 350px !important;
-        height: 350px !important;
-    }
+  .card {
+    width: 350px !important;
+    height: 350px !important;
+  }
 }

@@ -1,0 +1,22 @@
+.header-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  min-height: 60px;
+  background-color: rgb(209, 213, 219);
+  padding: 10px;
+}
+
+.action-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+  align-items: center;
+  gap: 16px;
+}
+
+.header-text {
+  font-size: 30px;
+  font-weight: 600;
+  font-style: normal;
+}
